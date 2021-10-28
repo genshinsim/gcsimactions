@@ -1,0 +1,40 @@
+#title, author and description are mandatory fields
+title = "Simple Yoimiya vape"
+author = "srl"
+description = "This is a non optimized test configuration for Yoimiya + Xingqiu comp. Should only be used as a starting point for fine tuning."
+tags = [
+    "yoimiya",
+    "xingqiu",
+    "bennett",
+    "sucrose",
+    "vape",
+]
+
+# version is an optional field for authors to keep track
+version = "0.1.0"
+# characters should be array of character names (all lowercase); this is mandatory
+characters = [
+    "yoimiya",
+    "xingqiu",
+    "bennett",
+    "sucrose",
+]
+
+# config is the action list, stored in multiline string
+config = '''
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+active+=bennett;
+
+actions+=attack target=yoimiya if=.status.yoimiyaskill>0;
+actions+=burst target=yoimiya active=yoimiya;
+actions+=skill target=sucrose if=.debuff.res.vvpyro==0;
+actions+=burst target=bennett;
+actions+=sequence_strict target=xingqiu exec=skill,burst lock=100;
+actions+=skill target=xingqiu if=.energy.xingqiu<80 lock=100;
+actions+=burst target=xingqiu;
+actions+=skill target=yoimiya;
+actions+=burst target=yoimiya;
+actions+=attack target=yoimiya active=yoimiya;
+actions+=attack target=xingqiu active=xingqiu;
+actions+=attack target=bennett active=bennett;
+'''
