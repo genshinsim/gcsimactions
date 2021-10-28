@@ -1,0 +1,50 @@
+#title, author and description are mandatory fields
+title = "Rosaria/Kaeya reverse melt"
+author = "tsym"
+description = "none"
+
+# version is an optional field for authors to keep track
+version = "0.1.0"
+# characters should be array of character names (all lowercase); this is mandatory
+characters = [
+    "rosaria",
+    "kaeya",
+    "xiangling",
+    "bennett"
+]
+
+# config is the action list, stored in multiline string
+config = '''
+
+##Default Enemy
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=bennett;
+
+
+# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
+# so in the case above, it adds on avg one particle every 250 frames in effect
+# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
+# From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
+energy+=every interval=200,300 amount=1;
+
+actions+=sequence_strict target=bennett exec=burst,skill if=.cd.xiangling.burst<60;
+
+actions+=sequence_strict target=xiangling exec=burst,skill;
+
+actions+=sequence_strict target=kaeya exec=skill,burst;
+
+actions+=sequence_strict target=rosaria exec=skill,burst;
+
+actions+=skill target=rosaria;
+actions+=skill target=kaeya;
+actions+=sequence_strict target=bennett exec=attack,skill if=.energy.xiangling<70&&(.cd.rosaria.skill>60&&.cd.kaeya.skill>60) swap=xiangling;
+
+actions+=attack target=bennett active=bennett;
+actions+=attack target=rosaria active=rosaria;
+actions+=attack target=kaeya active=kaeya;
+actions+=attack target=xiangling active=xiangling;
+
+
+'''

@@ -21,7 +21,7 @@ target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=
 ##Actions List
 active+=bennett;
 
-# HP particle simulation. Per srl:
+
 # it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
 # so in the case above, it adds on avg one particle every 250 frames in effect
 # so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
