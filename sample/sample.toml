@@ -2,6 +2,10 @@
 title = "Sample action list"
 author = "genshinsim"
 description = "This is a sample action list, based off of Tsym#2586's Raiden config."
+tags = [
+    "national",
+    "overvape"
+]
 
 # version is an optional field for authors to keep track
 version = "0.1.0"
