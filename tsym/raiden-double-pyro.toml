@@ -1,16 +1,16 @@
 #title, author and description are mandatory fields
-title = "Raiden Overvape"
+title = "Raiden Double Pyro"
 author = "tsym"
-description = "National but with Raiden"
+description = "Raiden with double pyro and Fischl"
 
 # version is an optional field for authors to keep track
 version = "0.1.0"
 # characters should be array of character names (all lowercase); this is mandatory
 characters = [
+    "raidenshogun",
     "xiangling",
-    "xingqiu",
     "bennett",
-    "raidenshogun"
+    "fischl"
 ]
 
 # config is the action list, stored in multiline string
