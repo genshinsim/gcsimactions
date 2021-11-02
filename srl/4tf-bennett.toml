@@ -1,7 +1,7 @@
 #title, author and description are mandatory fields
 title = "4TF Bennett"
 author = "srl"
-description = "This is a non optimized test configuration for 4TF Bennett. Should only be used as a starting point for fine tuning."
+description = "This is a non optimized test configuration for 4TF Bennett. Should only be used as a starting point for fine tuning. Teams revolves around Bennett using the 4 TF set and triggering as many overloads as possible to reduce Bennett E cd to 1sec"
 tags = [
     "bennett",
     "xingqiu",

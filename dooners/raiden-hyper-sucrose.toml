@@ -1,0 +1,64 @@
+#title, author and description are mandatory fields
+title = "Raiden Hypercarry with Sucrose"
+author = "dooners"
+description = "This is a team revolving around buffing Raiden damage as much as possible utilizing Bennett + Sara buff and Sucrose VV electro shred"
+
+# version is an optional field for authors to keep track
+version = "0.1.0"
+# characters should be array of character names (all lowercase); this is mandatory
+characters = [
+    "raidenshogun",
+    "kujousara",
+    "bennett",
+    "sucrose"
+]
+
+# config is the action list, stored in multiline string
+config = '''
+##Default Enemy
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=raidenshogun;
+
+
+# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
+# so in the case above, it adds on avg one particle every 250 frames in effect
+# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
+energy+=every interval=200,300 amount=1;
+
+# Raiden attack string in burst, this is 3N3C N1C
+actions+=sequence_strict target=raidenshogun exec=attack,attack,attack,charge,attack,attack,attack,charge,attack,attack,charge,attack,charge if=.status.raidenburst>0;
+
+# dash cancel raiden E so she doesn't immediately proc E and waste electro ICD
+actions+=sequence_strict target=raidenshogun exec=skill,dash if=.status.raidenskill<360;
+
+# Refresh at end of burst rotation
+actions+=skill target=raidenshogun if=.cd.raidenshogun.burst<600&&.status.btburst==0 swap=bennett;
+
+# Raiden Q set up: Bennett Q -> sucrose VV swirl -> Sara Q -> Raiden.
+# This only executes if everything downstream is ready
+# No need to check raiden Q CD because Raiden CD is 18 seconds while Sara CD is 20 seconds.
+actions+=sequence_strict target=bennett exec=burst if=.cd.kujousara.burst<120&&.energy.kujousara==80&&.cd.sucrose.skill<60&&.energy.raidenshogun>86 swap=sucrose;
+
+# sucrose burst if possible, otherwise just E
+actions+=sequence_strict target=sucrose exec=burst if=.status.raidenskill>0;
+actions+=sequence_strict target=sucrose exec=skill if=.status.raidenskill>0&&.cd.kujousara.burst<60&&.energy.kujousara==80 swap=sara;
+
+# Q on sara and instantly swap out for Raiden to catch buff
+actions+=sequence_strict target=kujousara exec=burst[wave_attack_procs=111] if=.status.btburst>0 swap=raidenshogun;
+
+# Raiden must burst after all others
+actions+=sequence_strict target=raidenshogun exec=burst if=.status.btburst>0;
+
+
+# Gap fill until next rotation
+actions+=sequence_strict target=bennett exec=skill if=.status.btburst==0&&.energy.bennett<60;
+actions+=sequence_strict target=kujousara exec=skill,aim if=.energy.kujousara<80 swap=bennett;
+
+actions+=attack target=bennett active=bennett;
+actions+=attack target=raidenshogun active=raidenshogun;
+actions+=attack target=sucrose active=sucrose;
+actions+=attack target=kujousara active=kujousara;
+'''
