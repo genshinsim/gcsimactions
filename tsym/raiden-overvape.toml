@@ -4,7 +4,7 @@ author = "tsym"
 description = "National but with Raiden"
 
 # version is an optional field for authors to keep track
-version = "0.1.0"
+version = "0.1.1"
 # characters should be array of character names (all lowercase); this is mandatory
 characters = [
     "raidenshogun",
@@ -38,7 +38,7 @@ actions+=skill target=raidenshogun if=.status.raidenskill==0;
 actions+=sequence_strict target=xingqiu exec=skill[orbital=1],burst[orbital=1],attack if=.cd.xiangling.skill<300;
 
 # Bennett burst goes after XQ burst for uptime alignment. Attack to proc swords
-actions+=sequence_strict target=bennett exec=burst,attack,skill if=.status.xqburst>0;
+actions+=sequence_strict target=bennett exec=burst,attack,skill if=.status.xqburst>0&&.cd.xiangling.burst<180;
 
 # Only ever want to XL burst in Bennett buff and after XQ burst for uptime alignment
 actions+=sequence_strict target=xiangling exec=burst,attack,skill,attack,attack if=.status.xqburst>0&&.status.btburst>0;
@@ -60,6 +60,5 @@ actions+=attack target=xiangling active=xiangling;
 actions+=attack target=bennett active=bennett;
 actions+=attack target=xingqiu active=xingqiu;
 actions+=attack target=raidenshogun active=raidenshogun;
-
 
 '''
