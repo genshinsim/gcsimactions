@@ -1,0 +1,54 @@
+title = "Childe Fireworks"
+author = "loghost#2690"
+description = "Childe/Bennett/Beidou/Fischl"
+
+version = "0.1.0"
+
+characters = [
+    "tartaglia",
+    "bennett",
+    "beidou",
+    "fischl"
+]
+
+config = '''
+# Childe Fireworks: Childe/Bennett/Beidou/Fischl
+
+# Rotation is as follows: Bennett Q, Childe Q, Fischl Q, Beidou E Q, Childe E N3C (9s), Bennett E, Fischl E, Beidou E, Bennett E 
+
+##Default Enemy (2 enemies because beidou sucks at single target)
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=bennett;
+energy+=every interval=200,300 amount=1;
+
+# Bennett Q
+actions+=sequence_strict target=bennett exec=burst;
+
+# Childe Q
+actions+=sequence_strict target=tartaglia exec=burst if=.status.btburst>0;
+
+# Fischl Q
+actions+=sequence_strict target=fischl exec=burst if=.status.btburst>0 swap=beidou;
+
+# Beidou E Q
+actions+=sequence_strict target=beidou exec=skill[counter=1],burst if=.status.btburst>0;
+
+# Childe N3C
+actions+=sequence_strict target=tartaglia exec=skill,attack,attack,charge,attack,attack,charge,attack,attack,charge,attack,attack,charge,attack,charge if=.cd.beidou.burst>600;
+
+# Bennett E
+actions+=skill target=bennett if=.energy.bennett<60&&.status.btburst==0;
+
+# Fischl E 
+actions+=sequence_strict target=fischl exec=attack,skill if=.status.btburst==0;
+
+# Beidou E
+actions+=sequence_strict target=beidou exec=skill,attack if=.status.btburst==0;
+
+# fill
+actions+=sequence_strict target=bennett exec=attack if=.status.btburst==0;
+actions+=sequence_strict target=fischl exec=attack if=.status.btburst==0;
+'''

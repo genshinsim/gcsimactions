@@ -1,0 +1,58 @@
+title = "International"
+author = "loghost#2690"
+description = "Childe/Bennett/Xiangling/Kazuha"
+
+version = "0.1.0"
+
+characters = [
+	"tartaglia",
+	"bennett",
+	"xiangling",
+	"kaedeharakazuha"
+]
+
+config = '''
+# International: Childe/Bennett/Xiangling/Kazuha
+
+# First rotation is as follows: Childe E, Bennett Q, Kazuha Q EP, Xiangling Q E, Childe E 4N3C N2C , Bennett E and swap to xiangling (repeat until Xiangling ult is refilled)
+# Second rotation is as follows: Bennett Q, Childe Q, Kazuha Q EP, Xiangling Q E, Childe E 4N3C N2C
+# as for why 4N3C N2C, it was the highest dps attack string that I could find, but there could very well be a better one
+
+##Default Enemy
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+#target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=tartaglia;
+energy+=every interval=200,300 amount=1;
+
+# Tartaglia E
+actions+=sequence_strict target=tartaglia exec=skill if=.status.btburst==0&&.energy.bennett==60 once=true;
+
+# Bennett Q
+actions+=sequence_strict target=bennett exec=burst if=.status.btburst==0&&.energy.bennett==60&&.energy.xiangling==80;
+
+# Kazuha Q EP
+actions+=sequence_strict target=kaedeharakazuha exec=burst,skill,high_plunge if=.status.btburst>0;
+
+# Xiangling Q E
+actions+=sequence_strict target=xiangling exec=burst,skill if=.status.btburst>0;
+
+# Childe ranged burst, into 6-7 N2CD (? not sure on the number, but 6 had the most team DPS for me with this action list)
+actions+=sequence_strict target=tartaglia exec=burst if=.energy.tartaglia>0&&.cd.bennett.burst>=180&&.energy.kaedeharakazuha<60;
+
+actions+=sequence_strict target=tartaglia exec=skill,attack,attack,charge,attack,attack,charge,attack,attack,charge,attack,attack,charge,attack,attack,charge if=.status.btburst>0;
+
+# Bennett E into Xiangling while Xiangling's energy is not full, Kazuha E to refill his own burst
+actions+=sequence_strict target=kaedeharakazuha exec=skill,high_plunge if=.energy.kaedeharakazuha<60&&.status.btburst<180;
+actions+=sequence_strict target=bennett exec=skill if=.energy.xiangling<80&&.status.btburst<180 swap=xiangling actionlock=180;
+actions+=sequence_strict target=xiangling exec=skill if=.energy.xiangling<80&&.status.btburst==0;
+
+# Filler attacks
+actions+=sequence_strict target=tartaglia exec=aim if=.energy.xiangling==80 actionlock=180;
+
+actions+=sequence_strict target=bennett exec=attack if=.status.btburst==0;
+actions+=sequence_strict target=xiangling exec=attack if=.status.btburst==0;
+actions+=sequence_strict target=kaedeharakazuha exec=attack if=.status.btburst==0;
+actions+=sequence_strict target=tartaglia exec=attack if=.status.btburst==0||.cd.tartaglia.melee>0;
+'''
