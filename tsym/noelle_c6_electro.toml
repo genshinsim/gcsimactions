@@ -1,0 +1,76 @@
+title = "C6 Noelle with Double Electro"
+author = "Tsym#2586"
+recommended_rotation_length = "21.0"
+recommended_minimum_er = {'ningguang': 1.2204, 'noelle': 1.3306, 'fischl': 1.2755, 'beidou': 1.8282}
+recommended_loadouts = {'ningguang': 'thrilling tales of dragon slayers, 4 archaic petra', 'noelle': "serpent spine, 4 gladiator's finale", 'fischl': "the stringless, 2 thundering fury, 2 gladiator's finale", 'beidou': 'luxurious sea-lord, 4 seal of insulation'}
+recommended_enemy_count = 2
+description = '''Recommended Rotation Duration: 21.0
+Recommended Minimum ER by Character: ningguang: 122%; noelle: 133%; fischl: 128%; beidou: 183%
+Rotation Built for the Following Weapon/Artifacts: ningguang: thrilling tales of dragon slayers, 4 archaic petra; noelle: serpent spine, 4 gladiator's finale; fischl: the stringless, 2 thundering fury, 2 gladiator's finale; beidou: luxurious sea-lord, 4 seal of insulation
+Recommended Enemy Count: 2
+Rotation: Fischl Q -> Ningguang N2 (trigger AP) -> Beidou E Q N1 -> Ningguang E -> Noelle Q E N4 -> Beidou Q (perfect counter) -> Fischl E -> Ningguang Q E -> Noelle 2N4. Attacks weaved where possible for Beidou procs (~9 during rotation).'''
+characters = ['ningguang', 'noelle', 'fischl', 'beidou']
+
+kqm_standard_character_configs = '''
+
+##Character Definitions
+char+=noelle ele=geo lvl=90 hp=1 atk=191 def=799 def%=0.3 cr=.05 cd=0.5 cons=6 talent=9,9,9;
+weapon+=noelle label="serpent spine" atk=509.606 cr=0.276 refine=3 param=[stacks=5];
+# weapon+=noelle label="whiteblind" atk=509.606 def=0.517 refine=3 param=[stacks=5];
+art+=noelle label="gladiator's finale" count=4;
+stats+=noelle label=main hp=4780 atk=311 def%=0.518 geo%=0.466 cd=0.622;
+stats+=noelle label=subs atk%=.0992 cr=.3972 cd=.5296 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=ningguang ele=geo lvl=80 hp=1 atk=198 def=1 geo%=0.24 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=ningguang label="thrilling tales of dragon slayers" atk=401 hp%=0.352 refine=5;
+art+=ningguang label="archaic petra" count=4;
+stats+=ningguang label=main hp=4780 atk=311 atk%=0.466 geo%=0.466 cr=0.311;
+stats+=ningguang label=subs atk%=.0992 cr=.1324 cd=.4634 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=fischl ele=electro lvl=80 hp=1 atk=227 def=1 atk%=0.240 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=fischl label="the stringless" atk=510 em=165 refine=3;
+art+=fischl label="thundering fury" count=2;
+art+=fischl label="gladiator's finale" count=2;
+stats+=fischl label=main hp=4780 atk=311 atk%=0.466 electro%=0.466 cr=0.311;
+stats+=fischl label=subs atk%=.0992 cr=.1986 cd=.662 em=39.64 er=.2755 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=beidou ele=electro lvl=80 hp=1 atk=210 def=1 electro%=0.24 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=beidou label="luxurious sea-lord" atk=454 atk%=.551 refine=5;
+# weapon+=beidou label="serpent spine" atk=509.606 cr=0.276 refine=3 param=[stacks=5];
+art+=beidou label="seal of insulation" count=4;
+stats+=beidou label=main hp=4780 atk=311 er=.518 electro%=0.466 cr=0.311;
+stats+=beidou label=subs atk%=.1984 cr=.331 cd=.7944 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+'''
+
+config = '''##Default Enemy
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=noelle;
+
+# HP particle simulation. Per srl:
+# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
+# so in the case above, it adds on avg one particle every 250 frames in effect
+# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
+# From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
+energy+=every interval=200,300 amount=1;
+
+actions+=burst target=fischl if=.status.noelleq==0;
+actions+=sequence_strict exec=skill,attack target=fischl if=.status.fischloz==0&&.status.beidouburst>0;
+actions+=skill target=fischl if=.status.fischloz==0;
+
+# Dash to simulate picking up crystal shield for petra
+actions+=sequence_strict exec=attack,attack,dash target=ningguang if=.status.beidouburst==0&&.cd.beidou.burst<120&&.energy.beidou>76 swap=beidou;
+actions+=sequence_strict exec=skill,burst,attack target=beidou if=.energy.noelle>55;
+actions+=sequence_strict exec=burst,attack target=beidou if=.energy.fischl>57;
+actions+=sequence_strict exec=attack,skill,attack target=ningguang if=.status.beidouburst>0&&.status.ningguangskillparticleICD==0 swap=noelle;
+
+actions+=sequence_strict exec=burst target=ningguang if=.status.beidouburst>0&&.energy.noelle<50&&.status.ningguangskillparticleICD==0&&.status.fischloz>120;
+actions+=sequence_strict exec=attack,skill,attack target=ningguang if=.status.beidouburst>0&&.status.ningguangskillparticleICD==0&&.energy.noelle<50 swap=noelle;
+actions+=sequence_strict exec=skill[counter=2],attack target=beidou if=.energy.beidou<65;
+
+actions+=sequence_strict target=noelle exec=burst,skill,dash;
+actions+=attack target=noelle if=.status.noelleq>0;
+'''

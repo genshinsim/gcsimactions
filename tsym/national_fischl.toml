@@ -1,0 +1,76 @@
+title = "XL/XQ/Bennett core with Fischl"
+author = "Tsym#2586"
+recommended_rotation_length = "21.5"
+recommended_minimum_er = {'xiangling': 1.9896, 'xingqiu': 2.1436, 'bennett': 2.1707, 'fischl': 1.3857}
+recommended_loadouts = {'xiangling': 'the catch, 4 seal of insulation', 'xingqiu': 'favonius sword, 4 seal of insulation', 'bennett': 'blackcliff longsword, 4 noblesse oblige', 'fischl': "the stringless, 2 thundering fury, 2 gladiator's finale"}
+recommended_enemy_count = 1
+description = '''Recommended Rotation Duration: 21.5
+Recommended Minimum ER by Character: xiangling: 199%; xingqiu: 214%; bennett: 217%; fischl: 139%
+Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal of insulation; xingqiu: favonius sword, 4 seal of insulation; bennett: blackcliff longsword, 4 noblesse oblige; fischl: the stringless, 2 thundering fury, 2 gladiator's finale
+Recommended Enemy Count: 1
+Rotation: Xingqiu E Q -> Bennett Q E -> Xiangling Q E -> Fischl Q -> Xingqiu -> Bennett E -> Xiangling -> Fischl E -> Bennett E -> Xiangling. Attacks weaved wherever possible to proc Rainswords (~15 waves during rotation). ~10/12 Pyronado hits vaped in ST.'''
+characters = ['xiangling', 'xingqiu', 'bennett', 'fischl']
+
+kqm_standard_character_configs = '''
+
+##Character Definitions
+char+=xiangling ele=pyro lvl=90 hp=10874.915 atk=225.141 def=668.871 em=96.000 cr=.05 cd=0.5 cons=4 talent=9,9,9;
+weapon+=xiangling label="the catch" atk=510 er=0.459 refine=5;
+art+=xiangling label="seal of insulation" count=4;
+stats+=xiangling label=main hp=4780 atk=311 atk%=.466 pyro%=0.466 cr=0.311;
+stats+=xiangling label=subs atk%=.0992 cr=.2317 cd=.662 em=99.1 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=xingqiu ele=hydro lvl=80 hp=1 atk=188 def=1 atk%=0.240 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=xingqiu label="favonius sword" atk=454.363 er=0.613 refine=3;
+art+=xingqiu label="seal of insulation" count=4;
+stats+=xingqiu label=main hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
+stats+=xingqiu label=subs atk%=.0992 cr=.2979 cd=.7282 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=bennett ele=pyro lvl=80 hp=1 atk=178 def=1 er=0.267 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=bennett label="blackcliff longsword" atk=564.784 cd=0.368 refine=3;
+art+=bennett label="noblesse oblige" count=4;
+stats+=bennett label=main hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
+stats+=bennett label=subs atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=fischl ele=electro lvl=80 hp=1 atk=227 def=1 atk%=0.240 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=fischl label="the stringless" atk=510 em=165 refine=3;
+art+=fischl label="thundering fury" count=2;
+art+=fischl label="gladiator's finale" count=2;
+stats+=fischl label=main hp=4780 atk=311 atk%=0.466 electro%=0.466 cr=0.311;
+stats+=fischl label=subs atk%=.0992 cr=.1986 cd=.5296 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+'''
+
+config = '''##Default Enemy
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=bennett;
+
+# HP particle simulation. Per srl:
+# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
+# so in the case above, it adds on avg one particle every 250 frames in effect
+# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
+# From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
+energy+=every interval=200,300 amount=1;
+
+actions+=sequence_strict target=xingqiu exec=skill[orbital=1],burst,attack if=.cd.xiangling.burst<270&&.energy.xiangling>73;
+
+actions+=sequence_strict target=bennett exec=burst,skill,attack if=.cd.xiangling.burst<120&&.energy.xiangling>73&&.status.xqburst>0;
+
+actions+=sequence_strict target=xiangling exec=burst,attack,skill if=.status.btburst>0;
+actions+=sequence_strict target=xiangling exec=burst if=.status.btburst>0;
+
+actions+=sequence_strict exec=attack,attack target=fischl if=.energy.fischl>55 actionlock=500;
+actions+=sequence_strict exec=burst target=fischl;
+actions+=sequence_strict exec=skill,attack target=fischl if=.status.fischloz==0;
+
+# Funnelling - only used when XL burst is off as otherwise you steal vapes
+actions+=sequence_strict target=bennett exec=attack,skill if=.status.xqburst>0&&.status.xianglingburst<240&&.energy.xiangling<71 swap=xiangling;
+actions+=sequence_strict target=bennett exec=skill if=.status.xianglingburst<240&&.energy.xiangling<71 swap=xiangling;
+
+actions+=attack target=xingqiu if=.status.xqburst>0&&.status.btburst>0;
+actions+=attack target=xiangling active=xiangling;
+actions+=attack target=xingqiu active=xingqiu;
+'''

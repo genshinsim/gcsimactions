@@ -1,0 +1,77 @@
+title = "Hu Tao Geo Bros"
+author = "Tsym#2586"
+recommended_rotation_length = "21.0"
+recommended_minimum_er = {'xingqiu': 2.2538, 'albedo': 1.3306, 'zhongli': 1.4162000000000001, 'hutao': 1.1102}
+recommended_loadouts = {'xingqiu': 'favonius sword, 4 seal of insulation', 'albedo': 'harbinger of dawn, 4 noblesse oblige', 'zhongli': 'favonius lance, 4 instructor', 'hutao': 'deathmatch, 4 crimson witch of flames'}
+recommended_enemy_count = 1
+description = '''Recommended Rotation Duration: 21.0
+Recommended Minimum ER by Character: xingqiu: 225%; albedo: 133%; zhongli: 142%; hutao: 111%
+Rotation Built for the Following Weapon/Artifacts: xingqiu: favonius sword, 4 seal of insulation; albedo: harbinger of dawn, 4 noblesse oblige; zhongli: favonius lance, 4 instructor; hutao: deathmatch, 4 crimson witch of flames
+Recommended Enemy Count: 1
+Rotation: Xingqiu E Q -> Zhongli N2 E Hold (put pillar away from enemy) -> Albedo E Q (Omitted in rotation 2 - not enough energy) -> Hu Tao E 8N2C + Q (Omitted in rotation 2 as Hu Tao does not generate enough energy) -> Xingqiu.  Hu Tao loses 1 CA vape across 2 rotations.'''
+characters = ['xingqiu', 'albedo', 'zhongli', 'hutao']
+
+kqm_standard_character_configs = '''
+
+##Character Definitions
+char+=hutao ele=pyro lvl=90 hp=15552 atk=106 def=1 cr=0.05 cd=0.884 cons=0 talent=9,9,9 starthp=3000;
+weapon+=hutao label="deathmatch" atk=454 cr=.368 refine=3;
+art+=hutao label="crimson witch of flames" count=4;
+stats+=hutao label=main hp=4780 atk=311 em=187 pyro%=0.466 cd=0.622;
+stats+=hutao label=subs atk%=.0992 cr=.3972 cd=.662 em=79.28 er=.1102 hp%=.1984 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=xingqiu ele=hydro lvl=80 hp=1 atk=188 def=1 atk%=0.240 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=xingqiu label="favonius sword" atk=454.363 er=0.613 refine=3;
+art+=xingqiu label="seal of insulation" count=4;
+stats+=xingqiu label=main hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
+stats+=xingqiu label=subs atk%=.0992 cr=.2648 cd=.662 em=39.64 er=.4408 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=zhongli ele=geo lvl=80 hp=1 atk=233 def=1 geo%=.288 cr=.05 cd=0.5 cons=0 talent=6,9,9;
+weapon+=zhongli label="favonius lance" atk=564.784 er=0.306 refine=3;
+art+=zhongli label="instructor" count=4;
+stats+=zhongli label=main hp=4780 atk=311 hp%=1 cr=0.311;
+stats+=zhongli label=subs atk%=.0992 cr=.2648 cd=.1324 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=albedo ele=geo lvl=80 hp=1 atk=233 def=815 geo%=.288 cr=.05 cd=0.5 cons=0 talent=6,9,9;
+weapon+=albedo label="harbinger of dawn" atk=401 cd=.469 refine=5;
+art+=albedo label="noblesse oblige" count=4;
+# art+=albedo label="husk of opulent dreams" count=4;
+stats+=albedo label=main hp=4780 atk=311 def%=.518 geo%=0.466 cr=0.311;
+# stats+=albedo label=main hp=4780 atk=311 er=.518 geo%=0.466 cr=0.311;
+stats+=albedo label=subs atk%=.0992 cr=.1655 cd=.662 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+# stats+=albedo label=subs atk%=.0992 cr=.1655 cd=.662 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+'''
+
+config = '''##Default Enemy
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=xingqiu;
+
+# HP particle simulation. Per srl:
+# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
+# so in the case above, it adds on avg one particle every 250 frames in effect
+# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
+# From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
+energy+=every interval=200,300 amount=1;
+
+# Drops 1 N2C - check ability usage figures to confirm
+# actions+=sequence_strict target=hutao exec=jump if=.status.paramita>300&&.status.paramita<350;
+
+actions+=sequence_strict target=hutao exec=burst if=.status.paramita<20&&.status.paramita>0;
+actions+=sequence_strict target=hutao exec=attack,attack,charge if=.status.paramita>20&&.status.paramita<=60;
+actions+=sequence_strict target=hutao exec=attack,attack,charge,dash if=.status.paramita>60&&.stam.hutao>180;
+actions+=sequence_strict target=hutao exec=attack,attack,charge,jump if=.status.paramita>60;
+
+actions+=sequence_strict target=xingqiu exec=skill[orbital=1],burst[orbital=1],attack;
+actions+=sequence_strict target=zhongli exec=attack,attack,skill[hold_nosteele=1] if=.status.xqburst>0&&.status.xqburst>720 swap=albedo;
+actions+=sequence_strict target=albedo exec=skill,burst swap=hutao if=.cd.hutao.skill<120&&.status.xqburst>720;
+actions+=sequence_strict target=albedo exec=skill,attack swap=hutao if=.cd.hutao.skill<120&&.status.xqburst>720;
+
+actions+=sequence_strict target=hutao exec=skill if=.status.xqburst>720;
+
+actions+=attack target=xingqiu;
+actions+=attack target=hutao active=hutao;
+'''

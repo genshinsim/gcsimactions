@@ -1,0 +1,81 @@
+title = "Xiao Hypercarry with Plunge Hits"
+author = "Tsym#2586"
+recommended_rotation_length = "23.5"
+recommended_minimum_er = {'sucrose': 1.1102, 'bennett': 2.4462, 'zhongli': 1.4162000000000001, 'xiao': 1.2204}
+recommended_loadouts = {'sucrose': 'thrilling tales of dragon slayers, 4 viridescent venerer', 'bennett': 'blackcliff longsword, 4 noblesse oblige', 'zhongli': 'favonius lance, 4 noblesse oblige', 'xiao': "deathmatch, 2 viridescent venerer, 2 gladiator's finale"}
+recommended_enemy_count = 2
+description = '''Recommended Rotation Duration: 23.5
+Recommended Minimum ER by Character: sucrose: 111%; bennett: 245%; zhongli: 142%; xiao: 122%
+Rotation Built for the Following Weapon/Artifacts: sucrose: thrilling tales of dragon slayers, 4 viridescent venerer; bennett: blackcliff longsword, 4 noblesse oblige; zhongli: favonius lance, 4 noblesse oblige; xiao: deathmatch, 2 viridescent venerer, 2 gladiator's finale
+Recommended Enemy Count: 2
+Rotation: Zhongli E Hold -> Bennett E Q -> Sucrose E -> Xiao E E Q Plunge x12. Xiao plunges each also do one instance of falling plunge damage.'''
+characters = ['sucrose', 'bennett', 'zhongli', 'xiao']
+
+kqm_standard_character_configs = '''
+
+##Character Definitions
+char+=zhongli ele=geo lvl=80 hp=1 atk=233 def=1 geo%=.288 cr=.05 cd=0.5 cons=0 talent=6,9,9;
+weapon+=zhongli label="favonius lance" atk=564.784 er=0.306 refine=3;
+art+=zhongli label="noblesse oblige" count=4;
+stats+=zhongli label=main hp=4780 atk=311 hp%=1 cr=0.311;
+stats+=zhongli label=subs atk%=.0992 cr=.2648 cd=.1324 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=xiao ele=anemo lvl=90 hp=12736 atk=349 def=799 cr=.242 cd=0.5 cons=0 talent=9,9,9;
+weapon+=xiao label="deathmatch" atk=454 cr=.368 refine=3;
+art+=xiao label="viridescent venerer" count=2;
+art+=xiao label="gladiator's finale" count=2;
+stats+=xiao label=main hp=4780 atk=311 atk%=0.466 anemo%=0.466 cd=0.622;
+stats+=xiao label=subs atk%=0.0992 cr=.3972 cd=.7944 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=bennett ele=pyro lvl=90 hp=12397.403 atk=191.157 def=771.249 er=0.267 cr=.05 cd=0.5 cons=4 talent=8,8,10;
+weapon+=bennett label="blackcliff longsword" atk=564.784 cd=0.368 refine=3;
+art+=bennett label="noblesse oblige" count=4;
+stats+=bennett  label=main hp=4780 atk=311 pyro%=0.466 er=.518 cr=0.311;
+stats+=bennett label=subs atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.6612 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=sucrose ele=anemo lvl=90 hp=9243.678 atk=169.918 def=702.997 anemo%=0.240 cr=.05 cd=0.5 cons=4 talent=8,8,10;
+weapon+=sucrose label="thrilling tales of dragon slayers" atk=401.294 hp%=0.352 refine=5;
+art+=sucrose label="viridescent venerer" count=4;
+stats+=sucrose label=main hp=4780 atk=311 em=561;
+stats+=sucrose label=subs atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+'''
+
+config = '''##Default Enemy
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=bennett;
+
+# HP particle simulation. Per srl:
+# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
+# so in the case above, it adds on avg one particle every 250 frames in effect
+# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
+# From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
+energy+=every interval=200,300 amount=1;
+
+# actions+=sequence_strict target=xiao exec=attack,charge,high_plunge[plunge_hits=1] if=.status.xiaoburst>60;
+actions+=sequence_strict target=xiao exec=high_plunge[plunge_hits=1] if=.status.xiaoburst>60;
+
+actions+=skill[hold_nosteele=1] target=zhongli once=true;
+actions+=skill[hold_nosteele=1] target=zhongli if=.cd.xiao.burst<500;
+
+actions+=sequence_strict target=bennett exec=skill,burst lock=100;
+actions+=sequence_strict target=bennett exec=skill if=.energy.bennett>40 lock=100;
+actions+=sequence_strict target=bennett exec=burst;
+
+actions+=sequence_strict exec=skill,skill target=sucrose swap=xiao if=.cd.xiao.burst==0&&.energy.xiao<60;
+actions+=sequence_strict exec=skill target=sucrose swap=xiao if=.cd.xiao.burst==0;
+
+# actions+=sequence_strict target=xiao exec=skill,skill,burst if=.tags.xiao.eCharge>1;
+actions+=sequence_strict target=xiao exec=skill,skill,burst;
+# actions+=sequence_strict target=xiao exec=skill,burst;
+# actions+=sequence_strict target=xiao exec=skill if=.energy.xiao>60&&.cd.xiao.burst<120 lock=120;
+
+# Funneling
+actions+=sequence_strict exec=skill target=sucrose swap=xiao if=.cd.xiao.burst==0;
+
+actions+=attack target=xiao lock=100;
+actions+=attack target=zhongli active=zhongli;
+'''

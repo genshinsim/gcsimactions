@@ -1,0 +1,90 @@
+title = "Raiden Overvape"
+author = "Tsym#2586"
+recommended_rotation_length = "25.0"
+recommended_minimum_er = {'xiangling': 1.2204, 'xingqiu': 1.5306, 'bennett': 1.6526999999999998, 'raiden': 2.1994000000000002}
+recommended_loadouts = {'xiangling': 'deathmatch, 4 crimson witch of flames', 'xingqiu': 'amenoma kageuchi, 4 seal of insulation', 'bennett': 'blackcliff longsword, 4 noblesse oblige', 'raiden': 'the catch, 4 seal of insulation'}
+recommended_enemy_count = 1
+description = '''Recommended Rotation Duration: 25.0
+Recommended Minimum ER by Character: xiangling: 122%; xingqiu: 153%; bennett: 165%; raiden: 220%
+Rotation Built for the Following Weapon/Artifacts: xiangling: deathmatch, 4 crimson witch of flames; xingqiu: amenoma kageuchi, 4 seal of insulation; bennett: blackcliff longsword, 4 noblesse oblige; raiden: the catch, 4 seal of insulation
+Recommended Enemy Count: 1
+Rotation: Raiden E -> Xingqiu E Q -> Bennett Q E -> Xiangling Q E -> Raiden Q (3N4 + N3C) -> Bennett E -> Xiangling -> Bennett E -> Xiangling. Attacks weaved wherever possible to proc Rainswords (~14 waves during rotation). ~10/12 Pyronado hits vaped in ST.'''
+characters = ['xiangling', 'xingqiu', 'bennett', 'raiden']
+
+kqm_standard_character_configs = '''
+
+##Character Definitions
+char+=xiangling ele=pyro lvl=90 hp=10874.915 atk=225.141 def=668.871 em=96.000 cr=.05 cd=0.5 cons=4 talent=9,9,9;
+weapon+=xiangling label="deathmatch" atk=454.363 cr=0.368 refine=3;
+# weapon+=xiangling label="staff of homa" atk=608 cd=.662 refine=1;
+art+=xiangling label="crimson witch of flames" count=4;
+stats+=xiangling label=main hp=4780 atk=311 em=187 pyro%=0.466 cd=0.622;
+stats+=xiangling label=subs atk%=.1984 cr=.3641 cd=.4634 em=79.28 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=xingqiu ele=hydro lvl=80 hp=1 atk=188 def=1 atk%=0.240 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=xingqiu label="amenoma kageuchi" atk=454.363 atk%=0.551 refine=3;
+art+=xingqiu label="seal of insulation" count=4;
+stats+=xingqiu label=main hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
+stats+=xingqiu label=subs atk%=.0992 cr=.1986 cd=.5958 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=bennett ele=pyro lvl=80 hp=1 atk=178 def=1 er=0.267 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=bennett label="blackcliff longsword" atk=564.784 cd=0.368 refine=3;
+art+=bennett label="noblesse oblige" count=4;
+stats+=bennett label=main hp=4780 atk=311 em=187 pyro%=0.466 cr=0.311;
+stats+=bennett label=subs atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=raiden ele=electro lvl=80 hp=1 atk=314 def=1 er=0.32 cr=.05 cd=0.5 cons=0 talent=6,9,9;
+weapon+=raiden label="the catch" atk=510 er=.459 refine=5;
+art+=raiden label="seal of insulation" count=4;
+stats+=raiden label=main hp=4780 atk=311 atk%=0.466 electro%=0.466 cr=0.311;
+stats+=raiden label=subs atk%=.2976 cr=.1986 cd=.7944 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+'''
+
+config = '''##Default Enemy
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=raiden;
+
+# HP particle simulation. Per srl:
+# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
+# so in the case above, it adds on avg one particle every 250 frames in effect
+# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
+energy+=every interval=200,300 amount=1;
+
+actions+=sequence_strict target=raiden exec=attack,attack,attack,attack,dash,attack,attack,attack,attack,dash,attack,attack,attack,attack,dash,attack,attack,charge if=.status.raidenburst>0;
+
+# Additional check to reset at the start of the next rotation
+actions+=skill target=raiden if=.status.xianglingburst==0&&.energy.xingqiu>70&&.energy.xiangling>70;
+actions+=skill target=raiden if=.status.raidenskill==0;
+
+# Skill is required before burst to activate Kageuchi. Otherwise ER is barely not enough
+# For rotations #2 and beyond, need to ensure that Guoba is ready to go. Guoba timing is about 300 frames after XQ fires his skill
+actions+=sequence_strict target=xingqiu exec=skill[orbital=1],burst[orbital=1],attack if=.cd.xiangling.skill<300;
+
+# Bennett burst goes after XQ burst for uptime alignment. Attack to proc swords
+actions+=sequence_strict target=bennett exec=burst,attack,skill if=.status.xqburst>0&&.cd.xiangling.burst<180;
+
+# Only ever want to XL burst in Bennett buff and after XQ burst for uptime alignment
+actions+=sequence_strict target=xiangling exec=burst,attack,skill,attack,attack if=.status.xqburst>0&&.status.btburst>0;
+# Second set of actions needed in case Guoba CD comes off while pyronado is spinning
+actions+=sequence_strict target=xiangling exec=burst,attack if=.status.xqburst>0&&.status.btburst>0;
+actions+=skill target=xiangling;
+
+# Raiden must burst after all others. Requires an attack to allow Bennett buff to apply
+actions+=sequence_strict target=raiden exec=burst if=.status.xqburst>0&&.status.xianglingburst>0&&.status.btburst>0;
+
+# Funnelling
+actions+=sequence_strict target=bennett exec=attack,skill if=.status.xqburst>0&&.energy.xiangling<70 swap=xiangling;
+actions+=skill target=bennett if=.energy.xiangling<70 swap=xiangling;
+actions+=skill target=bennett if=.energy.xingqiu<80 swap=xingqiu;
+actions+=sequence_strict target=bennett exec=attack,skill if=.status.xqburst>0 if=.energy.raiden<90 swap=raiden;
+
+actions+=sequence_strict target=xingqiu exec=attack if=.status.xqburst>0;
+actions+=attack target=xiangling active=xiangling;
+actions+=attack target=bennett active=bennett;
+actions+=attack target=xingqiu active=xingqiu;
+actions+=attack target=raiden active=raiden;
+'''

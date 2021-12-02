@@ -1,0 +1,76 @@
+title = "Sucrose Taser"
+author = "Tsym#2586"
+recommended_rotation_length = "21.0"
+recommended_minimum_er = {'fischl': 1.3857, 'sucrose': 1.1102, 'xingqiu': 2.0334, 'beidou': 1.8282}
+recommended_loadouts = {'fischl': "the stringless, 2 thundering fury, 2 gladiator's finale", 'sucrose': 'thrilling tales of dragon slayers, 4 viridescent venerer', 'xingqiu': 'favonius sword, 4 seal of insulation', 'beidou': 'serpent spine, 4 seal of insulation'}
+recommended_enemy_count = 2
+description = '''Recommended Rotation Duration: 21.0
+Recommended Minimum ER by Character: fischl: 139%; sucrose: 111%; xingqiu: 203%; beidou: 183%
+Rotation Built for the Following Weapon/Artifacts: fischl: the stringless, 2 thundering fury, 2 gladiator's finale; sucrose: thrilling tales of dragon slayers, 4 viridescent venerer; xingqiu: favonius sword, 4 seal of insulation; beidou: serpent spine, 4 seal of insulation
+Recommended Enemy Count: 2
+Rotation: Xingqiu E Q -> FIschl Q -> Sucrose Q -> Beidou E Q -> Sucrose E NA weave -> Fischl E (when expired) -> Sucrose NA'''
+characters = ['fischl', 'sucrose', 'xingqiu', 'beidou']
+
+kqm_standard_character_configs = '''
+
+##Character Definitions
+char+=xingqiu ele=hydro lvl=80 hp=1 atk=188 def=1 atk%=0.240 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=xingqiu label="favonius sword" atk=454.363 er=0.613 refine=3;
+art+=xingqiu label="seal of insulation" count=4;
+stats+=xingqiu label=main hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
+stats+=xingqiu label=subs atk%=.2976 cr=.2317 cd=.7282 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=sucrose ele=anemo lvl=90 hp=9243.678 atk=169.918 def=702.997 anemo%=0.240 cr=.05 cd=0.5 cons=4 talent=6,6,6;
+weapon+=sucrose label="thrilling tales of dragon slayers" atk=401.294 hp%=0.352 refine=5;
+# weapon+=sucrose label="sacrificial fragments" atk=454 em=221 refine=3;
+art+=sucrose label="viridescent venerer" count=4;
+stats+=sucrose label=main hp=4780 atk=311 em=561;
+stats+=sucrose label=subs atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=fischl ele=electro lvl=80 hp=1 atk=227 def=1 atk%=0.240 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=fischl label="the stringless" atk=510 em=165 refine=3;
+art+=fischl label="thundering fury" count=2;
+art+=fischl label="gladiator's finale" count=2;
+stats+=fischl label=main hp=4780 atk=311 atk%=0.466 electro%=0.466 cr=0.311;
+stats+=fischl label=subs atk%=.0992 cr=.1986 cd=.5296 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=beidou ele=electro lvl=90 hp=1 atk=225 def=1 electro%=0.24 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=beidou label="serpent spine" atk=509.606 cr=0.276 refine=3 param=[stacks=5];
+art+=beidou label="seal of insulation" count=4;
+stats+=beidou label=main hp=4780 atk=311 er=.518 electro%=0.466 cd=0.622;
+stats+=beidou label=subs atk%=.1984 cr=.3972 cd=.662 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+'''
+
+config = '''##Default Enemy
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=xingqiu;
+
+# HP particle simulation. Per srl:
+# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
+# so in the case above, it adds on avg one particle every 250 frames in effect
+# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
+# From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
+energy+=every interval=200,300 amount=1;
+
+actions+=sequence_strict target=xingqiu exec=skill[orbital=1],burst[orbital=1],attack;
+
+actions+=burst target=fischl;
+actions+=skill target=fischl if=.status.fischloz==0;
+
+actions+=sequence_strict exec=attack,burst target=sucrose;
+
+actions+=sequence_strict exec=attack,skill,burst target=beidou;
+actions+=sequence_strict exec=burst target=beidou;
+
+actions+=skill target=beidou if=.status.xqburst<60;
+
+actions+=sequence_strict exec=attack,skill,attack target=sucrose;
+actions+=skill target=sucrose;
+actions+=attack target=sucrose;
+
+actions+=attack target=beidou active=beidou;
+'''

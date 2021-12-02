@@ -1,0 +1,81 @@
+title = "Raiden Hyper"
+author = "Tsym#2586"
+recommended_rotation_length = "20.0"
+recommended_minimum_er = {'raiden': 2.1994000000000002, 'kazuha': 1.9037, 'bennett': 2.1707, 'sara': 1.8366}
+recommended_loadouts = {'raiden': 'the catch, 4 seal of insulation', 'kazuha': 'iron sting, 4 viridescent venerer', 'bennett': 'blackcliff longsword, 4 noblesse oblige', 'sara': 'sacrificial bow, 4 seal of insulation'}
+recommended_enemy_count = 2
+description = '''Recommended Rotation Duration: 20.0
+Recommended Minimum ER by Character: raiden: 220%; kazuha: 190%; bennett: 217%; sara: 184%
+Rotation Built for the Following Weapon/Artifacts: raiden: the catch, 4 seal of insulation; kazuha: iron sting, 4 viridescent venerer; bennett: blackcliff longsword, 4 noblesse oblige; sara: sacrificial bow, 4 seal of insulation
+Recommended Enemy Count: 2
+Rotation: Raiden E -> Bennett Q -> Kazuha EP Q (electro VV) -> Sara Q -> Raiden Q (3 N3C + N1C) E -> Bennett E -> Sara E CA -> Loop but do not do Raiden E again'''
+characters = ['raiden', 'kazuha', 'bennett', 'sara']
+
+kqm_standard_character_configs = '''
+
+##Character Definitions
+char+=kazuha ele=anemo lvl=90 hp=13348.043 atk=296.581 def=806.982 em=115.200 cr=.05 cd=0.5 cons=0 talent=6,6,6;
+weapon+=kazuha label="iron sting" atk=509.606 em=165.384 refine=3;
+art+=kazuha label="viridescent venerer" count=4;
+stats+=kazuha label=main hp=4780 atk=311 er=.518 em=374;
+stats+=kazuha label=subs atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=sara ele=electro lvl=80 hp=1 atk=182 def=1 atk%=0.24 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=sara label="sacrificial bow" atk=564.784 er=0.306 refine=3;
+art+=sara label="seal of insulation" count=4;
+stats+=sara label=main hp=4780 atk=311 atk%=0.466 electro%=0.466 cr=0.311;
+stats+=sara label=subs atk%=.0992 cr=.1655 cd=.662 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=bennett ele=pyro lvl=80 hp=1 atk=178 def=1 er=0.267 cr=.05 cd=0.5 cons=4 talent=6,9,9;
+weapon+=bennett label="blackcliff longsword" atk=564.784 cd=0.368 refine=3;
+art+=bennett label="noblesse oblige" count=4;
+stats+=bennett label=main hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
+stats+=bennett label=subs atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+char+=raiden ele=electro lvl=90 hp=1 atk=337 def=1 er=0.32 cr=.05 cd=0.5 cons=0 talent=9,9,9;
+weapon+=raiden label="the catch" atk=510 er=.459 refine=5;
+art+=raiden label="seal of insulation" count=4;
+stats+=raiden label=main hp=4780 atk=311 atk%=0.466 electro%=0.466 cr=0.311;
+stats+=raiden label=subs atk%=.2976 cr=.1986 cd=.7944 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+
+'''
+
+config = '''##Default Enemy
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##Actions List
+active+=raiden;
+
+# HP particle simulation. Per srl:
+# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
+# so in the case above, it adds on avg one particle every 250 frames in effect
+# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
+energy+=every interval=200,300 amount=1;
+
+actions+=sequence_strict target=raiden exec=attack,attack,attack,charge,attack,attack,attack,charge,attack,attack,charge,attack,charge if=.status.raidenburst>0;
+
+# Need to hold at the start or otherwise Kazuha won't get an electro VV proc due to timing with Bennett Q
+actions+=skill target=raiden if=.status.raidenskill<360 lock=40;
+# Refresh at end of burst rotation
+actions+=skill target=raiden if=.cd.raiden.burst<600&&.status.btburst==0;
+
+# Bennett burst goes after XQ burst for uptime alignment. Attack to proc swords
+actions+=sequence_strict target=bennett exec=burst if=.cd.sara.burst<270;
+
+actions+=sequence_strict target=kazuha exec=skill,high_plunge,burst if=.status.btburst>0;
+
+actions+=sequence_strict target=sara exec=burst[wave_attack_procs=111] if=.status.btburst>0;
+actions+=sequence_strict target=sara exec=skill,aim if=.status.btburst>0&&.cd.sara.burst<300;
+
+# Raiden must burst after all others. Requires an attack to allow Bennett buff to apply
+actions+=sequence_strict target=raiden exec=burst if=.status.btburst>0;
+
+# Gap fill until next rotation
+# actions+=sequence_strict target=kazuha exec=skill,high_plunge;
+actions+=sequence_strict target=bennett exec=skill if=.status.btburst==0;
+actions+=sequence_strict target=sara exec=skill,aim;
+
+actions+=attack target=bennett active=bennett;
+actions+=attack target=sara active=sara;
+'''
