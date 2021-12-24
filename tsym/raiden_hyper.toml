@@ -1,8 +1,8 @@
 title = "Raiden Hyper"
 author = "Tsym#2586"
 recommended_rotation_length = "20.0"
-recommended_minimum_er = {'raiden': 2.1994000000000002, 'kazuha': 1.9037, 'bennett': 2.1707, 'sara': 1.8366}
-recommended_loadouts = {'raiden': 'the catch, 4 seal of insulation', 'kazuha': 'iron sting, 4 viridescent venerer', 'bennett': 'blackcliff longsword, 4 noblesse oblige', 'sara': 'sacrificial bow, 4 seal of insulation'}
+recommended_minimum_er = { raiden = 2.1994000000000002, kazuha = 1.9037, bennett = 2.1707, sara = 1.8366 }
+recommended_loadouts = { raiden = 'the catch, 4 seal of insulation', kazuha = 'iron sting, 4 viridescent venerer', bennett = 'blackcliff longsword, 4 noblesse oblige', sara = 'sacrificial bow, 4 seal of insulation' }
 recommended_enemy_count = 2
 description = '''Recommended Rotation Duration: 20.0
 Recommended Minimum ER by Character: raiden: 220%; kazuha: 190%; bennett: 217%; sara: 184%

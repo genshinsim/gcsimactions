@@ -1,8 +1,8 @@
 title = "Hu Tao Amber VV"
 author = "Tsym#2586"
 recommended_rotation_length = "21.0"
-recommended_minimum_er = {'amber': 2.2432, 'sucrose': 1.1102, 'xingqiu': 2.2538, 'hutao': 1.1102}
-recommended_loadouts = {'amber': 'favonius warbow, 4 instructor', 'sucrose': 'thrilling tales of dragon slayers, 4 viridescent venerer', 'xingqiu': 'favonius sword, 4 seal of insulation', 'hutao': 'deathmatch, 4 crimson witch of flames'}
+recommended_minimum_er = { amber = 2.2432, sucrose = 1.1102, xingqiu = 2.2538, hutao = 1.1102 }
+recommended_loadouts = { amber = 'favonius warbow, 4 instructor', sucrose = 'thrilling tales of dragon slayers, 4 viridescent venerer', xingqiu = 'favonius sword, 4 seal of insulation', hutao = 'deathmatch, 4 crimson witch of flames' }
 recommended_enemy_count = 1
 description = '''Recommended Rotation Duration: 21.0
 Recommended Minimum ER by Character: amber: 224%; sucrose: 111%; xingqiu: 225%; hutao: 111%

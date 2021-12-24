@@ -1,8 +1,8 @@
 title = "Xiao Geo Bros with Plunge Hits"
 author = "Tsym#2586"
 recommended_rotation_length = "21.5"
-recommended_minimum_er = {'sucrose': 1.1102, 'albedo': 1.1102, 'zhongli': 1.4162000000000001, 'xiao': 1.2204}
-recommended_loadouts = {'sucrose': 'thrilling tales of dragon slayers, 4 viridescent venerer', 'albedo': 'harbinger of dawn, 4 noblesse oblige', 'zhongli': 'favonius lance, 4 noblesse oblige', 'xiao': "deathmatch, 2 viridescent venerer, 2 gladiator's finale"}
+recommended_minimum_er = { sucrose = 1.1102, albedo = 1.1102, zhongli = 1.4162000000000001, xiao = 1.2204 }
+recommended_loadouts = { sucrose = 'thrilling tales of dragon slayers, 4 viridescent venerer', albedo = 'harbinger of dawn, 4 noblesse oblige', zhongli = 'favonius lance, 4 noblesse oblige', xiao = "deathmatch, 2 viridescent venerer, 2 gladiator's finale" }
 recommended_enemy_count = 2
 description = '''Recommended Rotation Duration: 21.5
 Recommended Minimum ER by Character: sucrose: 111%; albedo: 111%; zhongli: 142%; xiao: 122%

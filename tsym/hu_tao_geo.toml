@@ -1,8 +1,8 @@
 title = "Hu Tao Geo Bros"
 author = "Tsym#2586"
 recommended_rotation_length = "21.0"
-recommended_minimum_er = {'xingqiu': 2.2538, 'albedo': 1.3306, 'zhongli': 1.4162000000000001, 'hutao': 1.1102}
-recommended_loadouts = {'xingqiu': 'favonius sword, 4 seal of insulation', 'albedo': 'harbinger of dawn, 4 noblesse oblige', 'zhongli': 'favonius lance, 4 instructor', 'hutao': 'deathmatch, 4 crimson witch of flames'}
+recommended_minimum_er = { xingqiu = 2.2538, albedo = 1.3306, zhongli = 1.4162000000000001, hutao = 1.1102 }
+recommended_loadouts = { xingqiu = 'favonius sword, 4 seal of insulation', albedo = 'harbinger of dawn, 4 noblesse oblige', zhongli = 'favonius lance, 4 instructor', hutao = 'deathmatch, 4 crimson witch of flames' }
 recommended_enemy_count = 1
 description = '''Recommended Rotation Duration: 21.0
 Recommended Minimum ER by Character: xingqiu: 225%; albedo: 133%; zhongli: 142%; hutao: 111%

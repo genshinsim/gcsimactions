@@ -1,8 +1,8 @@
 title = "Tartaglia Reverse Vape Sucrose (Pyro VV)"
 author = "Tsym#2586"
 recommended_rotation_length = "24.0"
-recommended_minimum_er = {'xiangling': 1.9896, 'sucrose': 1.1102, 'tartaglia': 1.3306, 'bennett': 2.1707}
-recommended_loadouts = {'xiangling': 'the catch, 4 seal of insulation', 'sucrose': 'thrilling tales of dragon slayers, 4 viridescent venerer', 'tartaglia': 'the viridescent hunt, 4 heart of depth', 'bennett': 'blackcliff longsword, 4 noblesse oblige'}
+recommended_minimum_er = { xiangling = 1.9896, sucrose = 1.1102, tartaglia = 1.3306, bennett = 2.1707 }
+recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', sucrose = 'thrilling tales of dragon slayers, 4 viridescent venerer', tartaglia = 'the viridescent hunt, 4 heart of depth', bennett = 'blackcliff longsword, 4 noblesse oblige' }
 recommended_enemy_count = 2
 description = '''Recommended Rotation Duration: 24.0
 Recommended Minimum ER by Character: xiangling: 199%; sucrose: 111%; tartaglia: 133%; bennett: 217%

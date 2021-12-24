@@ -1,8 +1,8 @@
 title = "Raiden Overvape"
 author = "Tsym#2586"
 recommended_rotation_length = "25.0"
-recommended_minimum_er = {'xiangling': 1.2204, 'xingqiu': 1.5306, 'bennett': 1.6526999999999998, 'raiden': 2.1994000000000002}
-recommended_loadouts = {'xiangling': 'deathmatch, 4 crimson witch of flames', 'xingqiu': 'amenoma kageuchi, 4 seal of insulation', 'bennett': 'blackcliff longsword, 4 noblesse oblige', 'raiden': 'the catch, 4 seal of insulation'}
+recommended_minimum_er = { xiangling = 1.2204, xingqiu = 1.5306, bennett = 1.6526999999999998, raiden = 2.1994000000000002 }
+recommended_loadouts = { xiangling = 'deathmatch, 4 crimson witch of flames', xingqiu = 'amenoma kageuchi, 4 seal of insulation', bennett = 'blackcliff longsword, 4 noblesse oblige', raiden = 'the catch, 4 seal of insulation' }
 recommended_enemy_count = 1
 description = '''Recommended Rotation Duration: 25.0
 Recommended Minimum ER by Character: xiangling: 122%; xingqiu: 153%; bennett: 165%; raiden: 220%

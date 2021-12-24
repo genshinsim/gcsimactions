@@ -1,8 +1,8 @@
 title = "Rosaria Kaeya Reverse Melt"
 author = "Tsym#2586"
 recommended_rotation_length = "21.0"
-recommended_minimum_er = {'xiangling': 2.1549, 'kaeya': 1.3772, 'rosaria': 1.1102, 'bennett': 2.1707}
-recommended_loadouts = {'xiangling': 'the catch, 4 seal of insulation', 'kaeya': "lion's roar, 4 noblesse oblige", 'rosaria': "dragon's bane, 4 lavawalker", 'bennett': 'blackcliff longsword, 4 instructor'}
+recommended_minimum_er = { xiangling = 2.1549, kaeya = 1.3772, rosaria = 1.1102, bennett = 2.1707 }
+recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', kaeya = "lion's roar, 4 noblesse oblige", rosaria = "dragon's bane, 4 lavawalker", bennett = 'blackcliff longsword, 4 instructor' }
 recommended_enemy_count = 2
 description = '''Recommended Rotation Duration: 21.0
 Recommended Minimum ER by Character: xiangling: 215%; kaeya: 138%; rosaria: 111%; bennett: 217%

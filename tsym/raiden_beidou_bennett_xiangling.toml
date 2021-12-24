@@ -1,8 +1,8 @@
 title = "Raiden Beidou Bennett Xiangling Desync"
 author = "Tsym#2586"
 recommended_rotation_length = "nan"
-recommended_minimum_er = {'xiangling': 1.2204, 'bennett': 2.1707, 'raiden': 2.1994000000000002, 'beidou': 1.3102}
-recommended_loadouts = {'xiangling': 'deathmatch, 4 crimson witch of flames', 'bennett': 'blackcliff longsword, 4 noblesse oblige', 'raiden': 'the catch, 4 seal of insulation', 'beidou': 'serpent spine, 4 seal of insulation'}
+recommended_minimum_er = { xiangling = 1.2204, bennett = 2.1707, raiden = 2.1994000000000002, beidou = 1.3102 }
+recommended_loadouts = { xiangling = 'deathmatch, 4 crimson witch of flames', bennett = 'blackcliff longsword, 4 noblesse oblige', raiden = 'the catch, 4 seal of insulation', beidou = 'serpent spine, 4 seal of insulation' }
 recommended_enemy_count = 2
 description = '''Recommended Rotation Duration: nan
 Recommended Minimum ER by Character: xiangling: 122%; bennett: 217%; raiden: 220%; beidou: 131%

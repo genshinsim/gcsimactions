@@ -1,8 +1,8 @@
 title = "XL/XQ/Bennett core with Fischl"
 author = "Tsym#2586"
 recommended_rotation_length = "21.5"
-recommended_minimum_er = {'xiangling': 1.9896, 'xingqiu': 2.1436, 'bennett': 2.1707, 'fischl': 1.3857}
-recommended_loadouts = {'xiangling': 'the catch, 4 seal of insulation', 'xingqiu': 'favonius sword, 4 seal of insulation', 'bennett': 'blackcliff longsword, 4 noblesse oblige', 'fischl': "the stringless, 2 thundering fury, 2 gladiator's finale"}
+recommended_minimum_er = { xiangling = 1.9896, xingqiu = 2.1436, bennett = 2.1707, fischl = 1.3857 }
+recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', xingqiu = 'favonius sword, 4 seal of insulation', bennett = 'blackcliff longsword, 4 noblesse oblige', fischl = "the stringless, 2 thundering fury, 2 gladiator's finale" }
 recommended_enemy_count = 1
 description = '''Recommended Rotation Duration: 21.5
 Recommended Minimum ER by Character: xiangling: 199%; xingqiu: 214%; bennett: 217%; fischl: 139%

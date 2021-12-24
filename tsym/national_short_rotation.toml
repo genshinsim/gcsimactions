@@ -1,8 +1,8 @@
 title = "National with Sucrose, Basic Rotation (No Guoba Swirl to Extend VV)"
 author = "Tsym#2586"
 recommended_rotation_length = "22.0"
-recommended_minimum_er = {'xiangling': 1.9896, 'sucrose': 1.1102, 'xingqiu': 2.1436, 'bennett': 2.1707}
-recommended_loadouts = {'xiangling': 'the catch, 4 seal of insulation', 'sucrose': 'thrilling tales of dragon slayers, 4 viridescent venerer', 'xingqiu': 'favonius sword, 4 seal of insulation', 'bennett': 'blackcliff longsword, 4 noblesse oblige'}
+recommended_minimum_er = { xiangling = 1.9896, sucrose = 1.1102, xingqiu = 2.1436, bennett = 2.1707 }
+recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', sucrose = 'thrilling tales of dragon slayers, 4 viridescent venerer', xingqiu = 'favonius sword, 4 seal of insulation', bennett = 'blackcliff longsword, 4 noblesse oblige' }
 recommended_enemy_count = 1
 description = '''Recommended Rotation Duration: 22.0
 Recommended Minimum ER by Character: xiangling: 199%; sucrose: 111%; xingqiu: 214%; bennett: 217%

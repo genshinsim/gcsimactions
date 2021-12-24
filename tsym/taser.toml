@@ -1,8 +1,8 @@
 title = "Sucrose Taser"
 author = "Tsym#2586"
 recommended_rotation_length = "21.0"
-recommended_minimum_er = {'fischl': 1.3857, 'sucrose': 1.1102, 'xingqiu': 2.0334, 'beidou': 1.8282}
-recommended_loadouts = {'fischl': "the stringless, 2 thundering fury, 2 gladiator's finale", 'sucrose': 'thrilling tales of dragon slayers, 4 viridescent venerer', 'xingqiu': 'favonius sword, 4 seal of insulation', 'beidou': 'serpent spine, 4 seal of insulation'}
+recommended_minimum_er = { fischl = 1.3857, sucrose = 1.1102, xingqiu = 2.0334, beidou = 1.8282 }
+recommended_loadouts = { fischl = "the stringless, 2 thundering fury, 2 gladiator's finale", sucrose = 'thrilling tales of dragon slayers, 4 viridescent venerer', xingqiu = 'favonius sword, 4 seal of insulation', beidou = 'serpent spine, 4 seal of insulation' }
 recommended_enemy_count = 2
 description = '''Recommended Rotation Duration: 21.0
 Recommended Minimum ER by Character: fischl: 139%; sucrose: 111%; xingqiu: 203%; beidou: 183%

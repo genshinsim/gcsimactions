@@ -1,8 +1,8 @@
 title = "C6 Noelle with Double Electro"
 author = "Tsym#2586"
 recommended_rotation_length = "21.0"
-recommended_minimum_er = {'ningguang': 1.2204, 'noelle': 1.3306, 'fischl': 1.2755, 'beidou': 1.8282}
-recommended_loadouts = {'ningguang': 'thrilling tales of dragon slayers, 4 archaic petra', 'noelle': "serpent spine, 4 gladiator's finale", 'fischl': "the stringless, 2 thundering fury, 2 gladiator's finale", 'beidou': 'luxurious sea-lord, 4 seal of insulation'}
+recommended_minimum_er = { ningguang = 1.2204, noelle = 1.3306, fischl = 1.2755, beidou = 1.8282 }
+recommended_loadouts = { ningguang = 'thrilling tales of dragon slayers, 4 archaic petra', noelle = "serpent spine, 4 gladiator's finale", fischl = "the stringless, 2 thundering fury, 2 gladiator's finale", beidou = 'luxurious sea-lord, 4 seal of insulation' }
 recommended_enemy_count = 2
 description = '''Recommended Rotation Duration: 21.0
 Recommended Minimum ER by Character: ningguang: 122%; noelle: 133%; fischl: 128%; beidou: 183%

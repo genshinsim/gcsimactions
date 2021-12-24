@@ -1,8 +1,8 @@
 title = "Melt Ganyu Xiangling (6 shots)"
 author = "Tsym#2586"
 recommended_rotation_length = "20.5"
-recommended_minimum_er = {'xiangling': 2.728, 'ganyu': 1.1102, 'bennett': 2.795, 'zhongli': 1.4162000000000001}
-recommended_loadouts = {'xiangling': 'the catch, 4 seal of insulation', 'ganyu': "hamayumi, 4 wanderer's troupe", 'bennett': 'festering desire, 4 noblesse oblige', 'zhongli': 'favonius lance, 4 instructor'}
+recommended_minimum_er = { xiangling = 2.728, ganyu = 1.1102, bennett = 2.795, zhongli = 1.4162000000000001 }
+recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', ganyu = "hamayumi, 4 wanderer's troupe", bennett = 'festering desire, 4 noblesse oblige', zhongli = 'favonius lance, 4 instructor' }
 recommended_enemy_count = 2
 description = '''Recommended Rotation Duration: 20.5
 Recommended Minimum ER by Character: xiangling: 273%; ganyu: 111%; bennett: 280%; zhongli: 142%
