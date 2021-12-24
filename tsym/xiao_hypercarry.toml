@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: sucrose: thrilling tales of d
 Recommended Enemy Count: 2
 Rotation: Zhongli E Hold -> Bennett E Q -> Sucrose E -> Xiao E E Q Plunge x12. Xiao plunges each also do one instance of falling plunge damage.'''
 characters = ['sucrose', 'bennett', 'zhongli', 'xiao']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

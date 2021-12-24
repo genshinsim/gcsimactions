@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: amber: favonius warbow, 4 ins
 Recommended Enemy Count: 1
 Rotation: Xingqiu E Q -> Amber Q (Stay onfield for .5s to proc Instructor) -> Sucrose E N1 (Pyro VV) -> Hu Tao E 8N2C + Q (Omitted in rotation 2 as Hu Tao does not generate enough energy) -> Xingqiu. Everything from Hu Tao is getting vaped except for some Normals here and there.'''
 characters = ['amber', 'sucrose', 'xingqiu', 'hutao']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal 
 Recommended Enemy Count: 1
 Rotation: Bennett Q E -> Sucrose E (Pyro VV) -> Xiangling Q E -> Xingqiu Q E -> Xingqiu AA -> Sucrose E -> Bennett E -> Xiangling -> Bennett E -> Xiangling. Attacks weaved wherever possible to proc Rainswords (~14 waves during rotation). ~9/12 Pyronado hits vaped in ST.'''
 characters = ['xiangling', 'sucrose', 'xingqiu', 'bennett']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

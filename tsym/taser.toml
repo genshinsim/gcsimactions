@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: fischl: the stringless, 2 thu
 Recommended Enemy Count: 2
 Rotation: Xingqiu E Q -> FIschl Q -> Sucrose Q -> Beidou E Q -> Sucrose E NA weave -> Fischl E (when expired) -> Sucrose NA'''
 characters = ['fischl', 'sucrose', 'xingqiu', 'beidou']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

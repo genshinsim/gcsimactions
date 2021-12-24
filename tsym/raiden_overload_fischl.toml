@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: xiangling: deathmatch, 4 crim
 Recommended Enemy Count: 1
 Rotation: Raiden E -> Bennett Q E -> Xiangling Q E -> Fischl Q -> Raiden Q (3N4 + N2C) -> Fischl E -> Bennett E -> Xiangling'''
 characters = ['xiangling', 'raiden', 'bennett', 'fischl']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

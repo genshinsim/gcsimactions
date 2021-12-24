@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: raiden: the catch, 4 seal of 
 Recommended Enemy Count: 2
 Rotation: Raiden E -> Bennett Q -> Kazuha EP Q (electro VV) -> Sara Q -> Raiden Q (3 N3C + N1C) E -> Bennett E -> Sara E CA -> Loop but do not do Raiden E again'''
 characters = ['raiden', 'kazuha', 'bennett', 'sara']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

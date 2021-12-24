@@ -2,17 +2,9 @@
 title = "Raiden Hypercarry with Sucrose"
 author = "dooners"
 description = "This is a team revolving around buffing Raiden damage as much as possible utilizing Bennett + Sara buff and Sucrose VV electro shred"
-
-# version is an optional field for authors to keep track
 version = "0.1.0"
 # characters should be array of character names (all lowercase); this is mandatory
-characters = [
-    "raidenshogun",
-    "kujousara",
-    "bennett",
-    "sucrose"
-]
-
+characters = ["raidenshogun", "kujousara", "bennett", "sucrose"]
 # config is the action list, stored in multiline string
 config = '''
 ##Default Enemy

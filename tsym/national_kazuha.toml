@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal 
 Recommended Enemy Count: 1
 Rotation: Xingqiu E Q -> Kazuha Q -> Bennett E Q -> Kazuha E (Hold) P (double VV) -> Xiangling Q E -> Xingqiu AA -> Bennett E -> Xiangling -> Bennett E -> Xiangling. Attacks weaved wherever possible to proc Rainswords (13 waves during rotation). ~10/12 Pyronado hits vaped in ST.'''
 characters = ['xiangling', 'xingqiu', 'bennett', 'kazuha']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

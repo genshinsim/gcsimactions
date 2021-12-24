@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal 
 Recommended Enemy Count: 2
 Rotation: Bennett Q E -> Sucrose E E (Rotation 1, only 1 E for Rotation 2) -> Xiangling Q E -> Tartaglia rQ + E + (N3C) x 4 -> Bennett E -> Xiangling -> Tartaglia CA -> Bennett E -> Xiangling -> Tartaglia (CA) x2'''
 characters = ['xiangling', 'sucrose', 'tartaglia', 'bennett']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

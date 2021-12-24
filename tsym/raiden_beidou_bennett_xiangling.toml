@@ -11,6 +11,7 @@ Recommended Enemy Count: 2
 Rotation: No fixed rotation and sim is run over 90 seconds. Ordering of ability usage until 20s goes something like:
 Raiden E -> Bennett Q E -> Xiangling Q E -> Raiden Q (3N4 + N2C) -> Beidou E (Perfect Counter) -> Bennett E Q -> Beidou Q -> Xiangling E -> Bennett E -> Xiangling -> Raiden E -> Beidou E (PC) -> Bennett E.'''
 characters = ['xiangling', 'bennett', 'raiden', 'beidou']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

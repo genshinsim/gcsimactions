@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: ningguang: thrilling tales of
 Recommended Enemy Count: 2
 Rotation: Fischl Q -> Ningguang N2 (trigger AP) -> Beidou E Q N1 -> Ningguang E -> Noelle Q E N4 -> Beidou Q (perfect counter) -> Fischl E -> Ningguang Q E -> Noelle 2N4. Attacks weaved where possible for Beidou procs (~9 during rotation).'''
 characters = ['ningguang', 'noelle', 'fischl', 'beidou']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: xingqiu: favonius sword, 4 se
 Recommended Enemy Count: 1
 Rotation: Xingqiu E Q -> Zhongli N2 E Hold (put pillar away from enemy) -> Albedo E Q (Omitted in rotation 2 - not enough energy) -> Hu Tao E 8N2C + Q (Omitted in rotation 2 as Hu Tao does not generate enough energy) -> Xingqiu.  Hu Tao loses 1 CA vape across 2 rotations.'''
 characters = ['xingqiu', 'albedo', 'zhongli', 'hutao']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

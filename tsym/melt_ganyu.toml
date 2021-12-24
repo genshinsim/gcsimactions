@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal 
 Recommended Enemy Count: 2
 Rotation: Bennett E -> Zhongli E (away from enemy) -> Bennett Q -> Xiangling Q E -> Ganyu E + 6 CA (all Ganyu shots melted, Bennett buff for 4/6)'''
 characters = ['xiangling', 'ganyu', 'bennett', 'zhongli']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 

@@ -10,6 +10,7 @@ Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal 
 Recommended Enemy Count: 2
 Rotation: Bennett Q E -> Xiangling Q E -> Kaeya E Q -> Rosaria E Q -> Bennett E -> Xiangling -> Rosaria E -> Kaeya E -> Bennett E -> Xiangling -> Rosaria E -> Kaeya E. ~4/12 Pyronado hits melted. ~1/4 Rosaria Q ticks melted.'''
 characters = ['xiangling', 'kaeya', 'rosaria', 'bennett']
+version = "0.1.0"
 
 kqm_standard_character_configs = '''
 
