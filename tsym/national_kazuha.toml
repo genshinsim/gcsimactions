@@ -1,7 +1,7 @@
 title = "National with Kazuha"
 author = "Tsym#2586"
 recommended_rotation_length = "23.5"
-recommended_minimum_er = { xiangling = 1.9896, xingqiu = 2.0334, bennett = 2.1707, kazuha = 1.9037 }
+recommended_minimum_er = { xiangling = 1.9896, xingqiu = 2.0334, bennett = 2.1707, kaedeharakazuha = 1.9037 }
 recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', xingqiu = 'favonius sword, 4 seal of insulation', bennett = 'blackcliff longsword, 4 noblesse oblige', kazuha = 'iron sting, 4 viridescent venerer' }
 recommended_enemy_count = 1
 description = '''Recommended Rotation Duration: 23.5
@@ -9,7 +9,7 @@ Recommended Minimum ER by Character: xiangling: 199%; xingqiu: 203%; bennett: 21
 Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal of insulation; xingqiu: favonius sword, 4 seal of insulation; bennett: blackcliff longsword, 4 noblesse oblige; kazuha: iron sting, 4 viridescent venerer
 Recommended Enemy Count: 1
 Rotation: Xingqiu E Q -> Kazuha Q -> Bennett E Q -> Kazuha E (Hold) P (double VV) -> Xiangling Q E -> Xingqiu AA -> Bennett E -> Xiangling -> Bennett E -> Xiangling. Attacks weaved wherever possible to proc Rainswords (13 waves during rotation). ~10/12 Pyronado hits vaped in ST.'''
-characters = ['xiangling', 'xingqiu', 'bennett', 'kazuha']
+characters = ['xiangling', 'xingqiu', 'bennett', 'kaedeharakazuha']
 version = "0.1.0"
 
 kqm_standard_character_configs = '''
@@ -33,11 +33,11 @@ art+=bennett label="noblesse oblige" count=4;
 stats+=bennett label=main hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
 stats+=bennett label=subs atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=kazuha ele=anemo lvl=90 hp=13348.043 atk=296.581 def=806.982 em=115.200 cr=.05 cd=0.5 cons=0 talent=6,6,6;
-weapon+=kazuha label="iron sting" atk=509.606 em=165.384 refine=3;
-art+=kazuha label="viridescent venerer" count=4;
-stats+=kazuha label=main hp=4780 atk=311 er=.518 em=374;
-stats+=kazuha label=subs atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+char+=kaedeharakazuha ele=anemo lvl=90 hp=13348.043 atk=296.581 def=806.982 em=115.200 cr=.05 cd=0.5 cons=0 talent=6,6,6;
+weapon+=kaedeharakazuha label="iron sting" atk=509.606 em=165.384 refine=3;
+art+=kaedeharakazuha label="viridescent venerer" count=4;
+stats+=kaedeharakazuha label=main hp=4780 atk=311 er=.518 em=374;
+stats+=kaedeharakazuha label=subs atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 '''
 
@@ -56,11 +56,11 @@ active+=bennett;
 energy+=every interval=200,300 amount=1;
 
 actions+=sequence_strict target=xingqiu exec=skill,burst[orbital=1],attack;
-actions+=sequence_strict target=kazuha exec=burst if=.cd.xingqiu.skill>900&&.energy.xiangling>70;
+actions+=sequence_strict target=kaedeharakazuha exec=burst if=.cd.xingqiu.skill>900&&.energy.xiangling>70;
 
 actions+=sequence_strict target=bennett exec=skill,burst if=.cd.xiangling.burst<120&&.cd.xiangling.skill<150&&.energy.xiangling>73;
 
-actions+=sequence_strict target=kazuha exec=skill[hold=1],high_plunge if=.status.btburst>0&&.debuff.res.vvpyro==0;
+actions+=sequence_strict target=kaedeharakazuha exec=skill[hold=1],high_plunge if=.status.btburst>0&&.debuff.res.vvpyro==0;
 
 actions+=sequence_strict target=xiangling exec=burst,attack,skill if=.status.btburst>0;
 
