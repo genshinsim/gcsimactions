@@ -67,7 +67,7 @@ actions+=sequence_strict target=hutao exec=attack,attack,charge,dash if=.status.
 actions+=sequence_strict target=hutao exec=attack,attack,charge,jump if=.status.paramita>60;
 
 actions+=sequence_strict target=xingqiu exec=skill[orbital=1],burst[orbital=1],attack;
-actions+=sequence_strict target=zhongli exec=attack,attack,skill[hold_nosteele=1] if=.status.xqburst>0&&.status.xqburst>720 swap=albedo;
+actions+=sequence_strict target=zhongli exec=attack,attack,skill[hold_nostele=1] if=.status.xqburst>0&&.status.xqburst>720 swap=albedo;
 actions+=sequence_strict target=albedo exec=skill,burst swap=hutao if=.cd.hutao.skill<120&&.status.xqburst>720;
 actions+=sequence_strict target=albedo exec=skill,attack swap=hutao if=.cd.hutao.skill<120&&.status.xqburst>720;
 

@@ -60,8 +60,8 @@ energy+=every interval=200,300 amount=1;
 
 actions+=sequence_strict target=xiao exec=high_plunge[plunge_hits=1] if=.status.xiaoburst>60;
 
-actions+=skill[hold_nosteele=1] target=zhongli once=true;
-actions+=skill[hold_nosteele=1] target=zhongli if=.cd.xiao.burst<500;
+actions+=skill[hold_nostele=1] target=zhongli once=true;
+actions+=skill[hold_nostele=1] target=zhongli if=.cd.xiao.burst<500;
 actions+=sequence_strict target=albedo exec=skill,burst if=.cd.xiao.burst<300;
 actions+=sequence_strict target=albedo exec=skill,attack if=.cd.xiao.burst<300;
 

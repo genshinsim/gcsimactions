@@ -60,7 +60,7 @@ energy+=every interval=200,300 amount=1;
 actions+=sequence_strict exec=skill target=bennett if=.element.pyro==0&&.element.cryo==0;
 
 # Attacks are to create the shield right before swapping
-actions+=sequence_strict exec=attack,attack,skill[hold_nosteele=1] target=zhongli if=.energy.xiangling>70&&.cd.bennett.burst<60;
+actions+=sequence_strict exec=attack,attack,skill[hold_nostele=1] target=zhongli if=.energy.xiangling>70&&.cd.bennett.burst<60;
 
 actions+=sequence_strict exec=burst,skill target=bennett if=.cd.xiangling.skill<120&&.cd.xiangling.burst<120;
 actions+=sequence_strict exec=burst target=bennett if=.cd.xiangling.skill<50&&.cd.xiangling.burst<50;
