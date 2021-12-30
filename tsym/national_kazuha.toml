@@ -2,11 +2,11 @@ title = "National with Kazuha"
 author = "Tsym#2586"
 recommended_rotation_length = "23.5"
 recommended_minimum_er = { xiangling = 1.9896, xingqiu = 2.0334, bennett = 2.1707, kaedeharakazuha = 1.9037 }
-recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', xingqiu = 'favonius sword, 4 seal of insulation', bennett = 'blackcliff longsword, 4 noblesse oblige', kazuha = 'iron sting, 4 viridescent venerer' }
+recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', xingqiu = 'favonius sword, 4 seal of insulation', bennett = 'blackclifflongsword, 4 noblesse oblige', kazuha = 'iron sting, 4 viridescent venerer' }
 recommended_enemy_count = 1
 description = '''Recommended Rotation Duration: 23.5
 Recommended Minimum ER by Character: xiangling: 199%; xingqiu: 203%; bennett: 217%; kazuha: 190%
-Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal of insulation; xingqiu: favonius sword, 4 seal of insulation; bennett: blackcliff longsword, 4 noblesse oblige; kazuha: iron sting, 4 viridescent venerer
+Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal of insulation; xingqiu: favonius sword, 4 seal of insulation; bennett: blackclifflongsword, 4 noblesse oblige; kazuha: iron sting, 4 viridescent venerer
 Recommended Enemy Count: 1
 Rotation: Xingqiu E Q -> Kazuha Q -> Bennett E Q -> Kazuha E (Hold) P (double VV) -> Xiangling Q E -> Xingqiu AA -> Bennett E -> Xiangling -> Bennett E -> Xiangling. Attacks weaved wherever possible to proc Rainswords (13 waves during rotation). ~10/12 Pyronado hits vaped in ST.'''
 characters = ['xiangling', 'xingqiu', 'bennett', 'kaedeharakazuha']
@@ -28,7 +28,7 @@ xingqiu add stats hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
 xingqiu add stats atk%=.0992 cr=.331 cd=.7944 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 bennett char lvl=80/90 cons=4 talent=6,9,9;
-bennett add weapon="blackcliff longsword" refine=3 lvl=90/90;
+bennett add weapon="blackclifflongsword" refine=3 lvl=90/90;
 bennett add set="noblesse oblige" count=4;
 bennett add stats hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
 bennett add stats atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
@@ -42,8 +42,8 @@ kaedeharakazuha add stats atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.3857 hp%=.0
 '''
 
 config = '''##Default Enemy
-target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-# target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 resist=.1;
+# target lvl=100 resist=.1;
 
 ##Actions List
 active bennett;
@@ -60,7 +60,7 @@ kaedeharakazuha burst  +if=.cd.xingqiu.skill>900&&.energy.xiangling>70;
 
 bennett skill,burst  +if=.cd.xiangling.burst<120&&.cd.xiangling.skill<150&&.energy.xiangling>73;
 
-kaedeharakazuha skill[hold=1],high_plunge  +if=.status.btburst>0&&.debuff.res.vvpyro==0;
+kaedeharakazuha skill[hold=1],high_plunge  +if=.status.btburst>0&&.debuff.res.t1.vvpyro==0;
 
 xiangling burst,attack,skill  +if=.status.btburst>0;
 

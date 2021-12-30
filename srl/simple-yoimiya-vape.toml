@@ -9,12 +9,12 @@ version = "0.1.0"
 characters = ["yoimiya", "xingqiu", "bennett", "sucrose"]
 # config is the action list, stored in multiline string
 config = '''
-target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 resist=.1;
 active bennett;
 
 yoimiya attack  +if=.status.yoimiyaskill>0;
 yoimiya burst  +is_onfield;
-sucrose skill  +if=.debuff.res.vvpyro==0;
+sucrose skill  +if=.debuff.res.t1.vvpyro==0;
 bennett burst ;
 xingqiu skill,burst  +swap_lock=100;
 xingqiu skill  +if=.energy.xingqiu<80 +swap_lock=100;

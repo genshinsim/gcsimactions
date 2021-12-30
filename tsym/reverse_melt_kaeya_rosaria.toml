@@ -2,11 +2,11 @@ title = "Rosaria Kaeya Reverse Melt"
 author = "Tsym#2586"
 recommended_rotation_length = "21.0"
 recommended_minimum_er = { xiangling = 2.1549, kaeya = 1.3772, rosaria = 1.1102, bennett = 2.1707 }
-recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', kaeya = "lion's roar, 4 noblesse oblige", rosaria = "dragon's bane, 4 lavawalker", bennett = 'blackcliff longsword, 4 instructor' }
+recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', kaeya = "lion's roar, 4 noblesse oblige", rosaria = "dragon's bane, 4 lavawalker", bennett = 'blackclifflongsword, 4 instructor' }
 recommended_enemy_count = 2
 description = '''Recommended Rotation Duration: 21.0
 Recommended Minimum ER by Character: xiangling: 215%; kaeya: 138%; rosaria: 111%; bennett: 217%
-Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal of insulation; kaeya: lion's roar, 4 noblesse oblige; rosaria: dragon's bane, 4 lavawalker; bennett: blackcliff longsword, 4 instructor
+Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal of insulation; kaeya: lion's roar, 4 noblesse oblige; rosaria: dragon's bane, 4 lavawalker; bennett: blackclifflongsword, 4 instructor
 Recommended Enemy Count: 2
 Rotation: Bennett Q E -> Xiangling Q E -> Kaeya E Q -> Rosaria E Q -> Bennett E -> Xiangling -> Rosaria E -> Kaeya E -> Bennett E -> Xiangling -> Rosaria E -> Kaeya E. ~4/12 Pyronado hits melted. ~1/4 Rosaria Q ticks melted.'''
 characters = ['xiangling', 'kaeya', 'rosaria', 'bennett']
@@ -22,7 +22,7 @@ xiangling add stats hp=4780 atk=311 atk%=.466 pyro%=0.466 cr=0.311;
 xiangling add stats atk%=.0992 cr=.2317 cd=.662 em=39.64 er=.4959 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 bennett char lvl=80/90 cons=4 talent=6,9,9;
-bennett add weapon="blackcliff longsword" refine=3 lvl=90/90;
+bennett add weapon="blackclifflongsword" refine=3 lvl=90/90;
 bennett add set="instructor" count=4;
 bennett add stats hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
 bennett add stats atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
@@ -42,8 +42,8 @@ rosaria add stats atk%=.0992 cr=.2648 cd=.7944 em=118.92 er=.1102 hp%=.0992 hp=5
 '''
 
 config = '''##Default Enemy
-target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 resist=.1;
+target lvl=100 resist=.1;
 
 ##Actions List
 active bennett;

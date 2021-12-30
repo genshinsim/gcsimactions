@@ -45,8 +45,8 @@ beidou add stats atk%=.1984 cr=.331 cd=.7944 em=39.64 er=.1102 hp%=.0992 hp=507.
 '''
 
 config = '''##Default Enemy
-target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 resist=.1;
+target lvl=100 resist=.1;
 
 ##Actions List
 active noelle;
