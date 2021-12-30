@@ -2,43 +2,36 @@
 title = "Raiden Hypercarry"
 author = "loghost#2690"
 description = "Raiden with Kazuha/Sara/Bennett"
-
 # version is an optional field for authors to keep track
 version = "0.1.0"
 # characters should be array of character names (all lowercase); this is mandatory
-characters = [
-    "raidenshogun",
-    "kujousara",
-    "bennett",
-    "kaedeharakazuha"
-]
-
+characters = ["raidenshogun", "kujousara", "bennett", "kaedeharakazuha"]
 # config is the action list, stored in multiline string
 config = '''
 ##Default Enemy
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-#target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+#target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
 
 ##Actions List
-active+=raidenshogun;
+active raidenshogun;
 
-energy+=every interval=200,300 amount=1;
+energy every interval=200,300 amount=1;
 
-actions+=skill target=raidenshogun if=.status.raidenskill<360;
+raidenshogun skill  +if=.status.raidenskill<360;
 
-actions+=skill target=raidenshogun if=.cd.raidenshogun.burst<600&&.status.btburst==0;
+raidenshogun skill  +if=.cd.raidenshogun.burst<600&&.status.btburst==0;
 
-actions+=sequence_strict target=bennett exec=burst if=.cd.kujousara.burst<270;
+bennett burst  +if=.cd.kujousara.burst<270;
 
-actions+=sequence_strict target=kaedeharakazuha exec=burst if=.status.btburst>0;
+kaedeharakazuha burst  +if=.status.btburst>0;
 
-actions+=sequence_strict target=kujousara exec=skill,aim if=.status.btburst>0&&.cd.kujousara.burst<300;
-actions+=sequence_strict target=kujousara exec=burst[wave_attack_procs=111] if=.status.btburst>0;
+kujousara skill,aim  +if=.status.btburst>0&&.cd.kujousara.burst<300;
+kujousara burst[wave_attack_procs=111]  +if=.status.btburst>0;
 
-actions+=sequence_strict target=raidenshogun exec=burst;
-actions+=sequence_strict target=raidenshogun exec=attack,attack,attack,charge,attack,attack,attack,charge,attack,attack,charge,attack,charge if=.status.raidenburst>0;
+raidenshogun burst; 
+raidenshogun attack,attack,attack,charge,attack,attack,attack,charge,attack,attack,charge,attack,charge  +if=.status.raidenburst>0;
 
-actions+=sequence_strict target=bennett exec=skill if=.status.btburst==0;
-actions+=sequence_strict target=kaedeharakazuha exec=skill,high_plunge;
-actions+=sequence_strict target=kujousara exec=skill,aim;
+bennett skill  +if=.status.btburst==0;
+kaedeharakazuha skill,high_plunge; 
+kujousara skill,aim; 
 '''

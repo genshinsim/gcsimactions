@@ -11,34 +11,27 @@ tags = [
     "thundering fury",
     "overload"
 ]
-
 # version is an optional field for authors to keep track
 version = "0.1.0"
 # characters should be array of character names (all lowercase); this is mandatory
-characters = [
-    "bennett",
-    "xingqiu",
-    "beidou",
-    "fischl",
-]
-
+characters = ["bennett", "xingqiu", "beidou", "fischl"]
 # config is the action list, stored in multiline string
 config = '''
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-active+=xingqiu;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+active xingqiu;
 
-actions+=sequence_strict target=xingqiu exec=skill,burst lock=100;
-actions+=skill target=xingqiu if=.status.xingqiu.energy<80 lock=100;
-actions+=burst target=xingqiu;
-actions+=burst target=bennett;
-actions+=sequence_strict target=beidou exec=skill,burst lock=100;
-actions+=burst target=beidou;
-actions+=burst target=fischl if=.status.fischloz==0;
-actions+=skill target=fischl if=.status.fischloz==0;
-actions+=skill target=beidou actionlock=600;
-actions+=sequence_strict target=bennett exec=skill,attack;
-actions+=attack target=fischl active=fischl;
-actions+=attack target=beidou active=beidou;
-actions+=attack target=xingqiu active=xingqiu;
-actions+=attack target=bennett active=bennett;
+xingqiu skill,burst  +swap_lock=100;
+xingqiu skill  +if=.status.xingqiu.energy<80 +swap_lock=100;
+xingqiu burst ;
+bennett burst ;
+beidou skill,burst  +swap_lock=100;
+beidou burst ;
+fischl burst  +if=.status.fischloz==0;
+fischl skill  +if=.status.fischloz==0;
+beidou skill  +swap_lock=600;
+bennett skill,attack; 
+fischl attack  +is_onfield;
+beidou attack  +is_onfield;
+xingqiu attack  +is_onfield;
+bennett attack  +is_onfield;
 '''

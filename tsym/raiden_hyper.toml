@@ -1,82 +1,82 @@
 title = "Raiden Hyper"
 author = "Tsym#2586"
 recommended_rotation_length = "20.0"
-recommended_minimum_er = { raidenshogun = 2.1994000000000002, kaedeharakazuha = 1.9037, bennett = 2.1707, kujosara = 1.8366 }
-recommended_loadouts = { raidenshogun = 'the catch, 4 seal of insulation', kaedeharakazuha = 'iron sting, 4 viridescent venerer', bennett = 'blackcliff longsword, 4 noblesse oblige', kujosara = 'sacrificial bow, 4 seal of insulation' }
+recommended_minimum_er = { raidenshogun = 2.1994000000000002, kaedeharakazuha = 1.9037, bennett = 2.1707, kujousara = 1.8366 }
+recommended_loadouts = { raidenshogun = 'the catch, 4 seal of insulation', kaedeharakazuha = 'iron sting, 4 viridescent venerer', bennett = 'blackcliff longsword, 4 noblesse oblige', kujousara = 'sacrificial bow, 4 seal of insulation' }
 recommended_enemy_count = 2
 description = '''Recommended Rotation Duration: 20.0
-Recommended Minimum ER by Character: raidenshogun: 220%; kaedeharakazuha: 190%; bennett: 217%; kujosara: 184%
-Rotation Built for the Following Weapon/Artifacts: raidenshogun: the catch, 4 seal of insulation; kaedeharakazuha: iron sting, 4 viridescent venerer; bennett: blackcliff longsword, 4 noblesse oblige; kujosara: sacrificial bow, 4 seal of insulation
+Recommended Minimum ER by Character: raidenshogun: 220%; kaedeharakazuha: 190%; bennett: 217%; kujousara: 184%
+Rotation Built for the Following Weapon/Artifacts: raidenshogun: the catch, 4 seal of insulation; kaedeharakazuha: iron sting, 4 viridescent venerer; bennett: blackcliff longsword, 4 noblesse oblige; kujousara: sacrificial bow, 4 seal of insulation
 Recommended Enemy Count: 2
 Rotation: Raiden E -> Bennett Q -> Kazuha EP Q (electro VV) -> Sara Q -> Raiden Q (3 N3C + N1C) E -> Bennett E -> Sara E CA -> Loop but do not do Raiden E again'''
-characters = ['raidenshogun', 'kaedeharakazuha', 'bennett', 'kujosara']
+characters = ['raidenshogun', 'kaedeharakazuha', 'bennett', 'kujousara']
 version = "0.1.0"
 
 kqm_standard_character_configs = '''
 
 ##Character Definitions
-char+=kaedeharakazuha ele=anemo lvl=90 hp=13348.043 atk=296.581 def=806.982 em=115.200 cr=.05 cd=0.5 cons=0 talent=6,6,6;
-weapon+=kaedeharakazuha label="iron sting" atk=509.606 em=165.384 refine=3;
-art+=kaedeharakazuha label="viridescent venerer" count=4;
-stats+=kaedeharakazuha label=main hp=4780 atk=311 er=.518 em=374;
-stats+=kaedeharakazuha label=subs atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+kaedeharakazuha char lvl=90/90 cons=0 talent=6,6,6;
+kaedeharakazuha add weapon="iron sting" refine=3 lvl=90/90;
+kaedeharakazuha add set="viridescent venerer" count=4;
+kaedeharakazuha add stats hp=4780 atk=311 er=.518 em=374;
+kaedeharakazuha add stats atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=kujosara ele=electro lvl=80 hp=1 atk=182 def=1 atk%=0.24 cr=.05 cd=0.5 cons=4 talent=6,9,9;
-weapon+=kujosara label="sacrificial bow" atk=564.784 er=0.306 refine=3;
-art+=kujosara label="seal of insulation" count=4;
-stats+=kujosara label=main hp=4780 atk=311 atk%=0.466 electro%=0.466 cr=0.311;
-stats+=kujosara label=subs atk%=.0992 cr=.1655 cd=.662 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+kujousara char lvl=80/90 cons=4 talent=6,9,9;
+kujousara add weapon="sacrificial bow" refine=3 lvl=90/90;
+kujousara add set="seal of insulation" count=4;
+kujousara add stats hp=4780 atk=311 atk%=0.466 electro%=0.466 cr=0.311;
+kujousara add stats atk%=.0992 cr=.1655 cd=.662 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=bennett ele=pyro lvl=80 hp=1 atk=178 def=1 er=0.267 cr=.05 cd=0.5 cons=4 talent=6,9,9;
-weapon+=bennett label="blackcliff longsword" atk=564.784 cd=0.368 refine=3;
-art+=bennett label="noblesse oblige" count=4;
-stats+=bennett label=main hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
-stats+=bennett label=subs atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+bennett char lvl=80/90 cons=4 talent=6,9,9;
+bennett add weapon="blackcliff longsword" refine=3 lvl=90/90;
+bennett add set="noblesse oblige" count=4;
+bennett add stats hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
+bennett add stats atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=raidenshogun ele=electro lvl=90 hp=1 atk=337 def=1 er=0.32 cr=.05 cd=0.5 cons=0 talent=9,9,9;
-weapon+=raidenshogun label="the catch" atk=510 er=.459 refine=5;
-art+=raidenshogun label="seal of insulation" count=4;
-stats+=raidenshogun label=main hp=4780 atk=311 atk%=0.466 electro%=0.466 cr=0.311;
-stats+=raidenshogun label=subs atk%=.2976 cr=.1986 cd=.7944 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+raidenshogun char lvl=90/90 cons=0 talent=9,9,9;
+raidenshogun add weapon="the catch" refine=5 lvl=90/90;
+raidenshogun add set="seal of insulation" count=4;
+raidenshogun add stats hp=4780 atk=311 atk%=0.466 electro%=0.466 cr=0.311;
+raidenshogun add stats atk%=.2976 cr=.1986 cd=.7944 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 '''
 
 config = '''##Default Enemy
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
 
 ##Actions List
-active+=raidenshogun;
+active raidenshogun;
 
 # HP particle simulation. Per srl:
 # it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
 # so in the case above, it adds on avg one particle every 250 frames in effect
 # so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
-energy+=every interval=200,300 amount=1;
+energy every interval=200,300 amount=1;
 
-actions+=sequence_strict target=raidenshogun exec=attack,attack,attack,charge,attack,attack,attack,charge,attack,attack,charge,attack,charge if=.status.raidenburst>0;
+raidenshogun attack,attack,attack,charge,attack,attack,attack,charge,attack,attack,charge,attack,charge  +if=.status.raidenburst>0;
 
 # Need to hold at the start or otherwise Kazuha won't get an electro VV proc due to timing with Bennett Q
-actions+=skill target=raidenshogun if=.status.raidenskill<360 lock=40;
+raidenshogun skill  +if=.status.raidenskill<360 +swap_lock=40;
 # Refresh at end of burst rotation
-actions+=skill target=raidenshogun if=.cd.raidenshogun.burst<600&&.status.btburst==0;
+raidenshogun skill  +if=.cd.raidenshogun.burst<600&&.status.btburst==0;
 
 # Bennett burst goes after XQ burst for uptime alignment. Attack to proc swords
-actions+=sequence_strict target=bennett exec=burst if=.cd.kujosara.burst<270;
+bennett burst  +if=.cd.kujousara.burst<270;
 
-actions+=sequence_strict target=kaedeharakazuha exec=skill,high_plunge,burst if=.status.btburst>0;
+kaedeharakazuha skill,high_plunge,burst  +if=.status.btburst>0;
 
-actions+=sequence_strict target=kujosara exec=burst[wave_attack_procs=111] if=.status.btburst>0;
-actions+=sequence_strict target=kujosara exec=skill,aim if=.status.btburst>0&&.cd.kujosara.burst<300;
+kujousara burst[wave_attack_procs=111]  +if=.status.btburst>0;
+kujousara skill,aim  +if=.status.btburst>0&&.cd.kujousara.burst<300;
 
 # Raiden must burst after all others. Requires an attack to allow Bennett buff to apply
-actions+=sequence_strict target=raidenshogun exec=burst if=.status.btburst>0;
+raidenshogun burst  +if=.status.btburst>0;
 
 # Gap fill until next rotation
-# actions+=sequence_strict target=kaedeharakazuha exec=skill,high_plunge;
-actions+=sequence_strict target=bennett exec=skill if=.status.btburst==0;
-actions+=sequence_strict target=kujosara exec=skill,aim;
+# kaedeharakazuha skill,high_plunge; 
+bennett skill  +if=.status.btburst==0;
+kujousara skill,aim; 
 
-actions+=attack target=bennett active=bennett;
-actions+=attack target=kujosara active=kujosara;
+bennett attack  +is_onfield;
+kujousara attack  +is_onfield;
 '''

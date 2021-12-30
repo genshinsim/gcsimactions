@@ -8,49 +8,49 @@ characters = ["raidenshogun", "kujousara", "bennett", "sucrose"]
 # config is the action list, stored in multiline string
 config = '''
 ##Default Enemy
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-# target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
 
 ##Actions List
-active+=raidenshogun;
+active raidenshogun;
 
 
 # it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
 # so in the case above, it adds on avg one particle every 250 frames in effect
 # so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
-energy+=every interval=200,300 amount=1;
+energy every interval=200,300 amount=1;
 
 # Raiden attack string in burst, this is 3N3C N1C
-actions+=sequence_strict target=raidenshogun exec=attack,attack,attack,charge,attack,attack,attack,charge,attack,attack,charge,attack,charge if=.status.raidenburst>0;
+raidenshogun attack,attack,attack,charge,attack,attack,attack,charge,attack,attack,charge,attack,charge  +if=.status.raidenburst>0;
 
 # dash cancel raidenshogun E so she doesn't immediately proc E and waste electro ICD
-actions+=sequence_strict target=raidenshogun exec=skill,dash if=.status.raidenskill<360;
+raidenshogun skill,dash  +if=.status.raidenskill<360;
 
 # Refresh at end of burst rotation
-actions+=skill target=raidenshogun if=.cd.raidenshogun.burst<600&&.status.btburst==0 swap=bennett;
+raidenshogun skill  +if=.cd.raidenshogun.burst<600&&.status.btburst==0 +swap_to=bennett;
 
 # Raiden Q set up: Bennett Q -> sucrose VV swirl -> Sara Q -> Raiden.
 # This only executes if everything downstream is ready
 # No need to check raidenshogun Q CD because Raiden CD is 18 seconds while Sara CD is 20 seconds.
-actions+=sequence_strict target=bennett exec=burst if=.cd.kujousara.burst<120&&.energy.kujousara==80&&.cd.sucrose.skill<60&&.energy.raidenshogun>86 swap=sucrose;
+bennett burst  +if=.cd.kujousara.burst<120&&.energy.kujousara==80&&.cd.sucrose.skill<60&&.energy.raidenshogun>86 +swap_to=sucrose;
 
 # sucrose burst if possible, otherwise just E
-actions+=sequence_strict target=sucrose exec=burst if=.status.raidenskill>0;
-actions+=sequence_strict target=sucrose exec=skill if=.status.raidenskill>0&&.cd.kujousara.burst<60&&.energy.kujousara==80 swap=kujosara;
+sucrose burst  +if=.status.raidenskill>0;
+sucrose skill  +if=.status.raidenskill>0&&.cd.kujousara.burst<60&&.energy.kujousara==80 +swap_to=kujousara;
 
-# Q on kujosara and instantly swap out for Raiden to catch buff
-actions+=sequence_strict target=kujousara exec=burst[wave_attack_procs=111] if=.status.btburst>0 swap=raidenshogun;
+# Q on kujousara and instantly swap out for Raiden to catch buff
+kujousara burst[wave_attack_procs=111]  +if=.status.btburst>0 +swap_to=raidenshogun;
 
 # Raiden must burst after all others
-actions+=sequence_strict target=raidenshogun exec=burst if=.status.btburst>0;
+raidenshogun burst  +if=.status.btburst>0;
 
 
 # Gap fill until next rotation
-actions+=sequence_strict target=bennett exec=skill if=.status.btburst==0&&.energy.bennett<60;
-actions+=sequence_strict target=kujousara exec=skill,aim if=.energy.kujousara<80 swap=bennett;
+bennett skill  +if=.status.btburst==0&&.energy.bennett<60;
+kujousara skill,aim  +if=.energy.kujousara<80 +swap_to=bennett;
 
-actions+=attack target=bennett active=bennett;
-actions+=attack target=raidenshogun active=raidenshogun;
-actions+=attack target=sucrose active=sucrose;
-actions+=attack target=kujousara active=kujousara;
+bennett attack  +is_onfield;
+raidenshogun attack  +is_onfield;
+sucrose attack  +is_onfield;
+kujousara attack  +is_onfield;
 '''

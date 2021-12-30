@@ -15,60 +15,60 @@ version = "0.1.0"
 kqm_standard_character_configs = '''
 
 ##Character Definitions
-char+=xiangling ele=pyro lvl=80 hp=1 atk=210 def=668.871 em=96.000 cr=.05 cd=0.5 cons=4 talent=6,9,9;
-weapon+=xiangling label="the catch" atk=510 er=0.459 refine=5;
-art+=xiangling label="seal of insulation" count=4;
-stats+=xiangling label=main hp=4780 atk=311 atk%=.466 pyro%=0.466 cr=0.311;
-stats+=xiangling label=subs atk%=.0992 cr=.2317 cd=.662 em=39.64 er=.4959 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+xiangling char lvl=80/90 cons=4 talent=6,9,9;
+xiangling add weapon="the catch" refine=5 lvl=90/90;
+xiangling add set="seal of insulation" count=4;
+xiangling add stats hp=4780 atk=311 atk%=.466 pyro%=0.466 cr=0.311;
+xiangling add stats atk%=.0992 cr=.2317 cd=.662 em=39.64 er=.4959 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=bennett ele=pyro lvl=80 hp=1 atk=178 def=1 er=0.267 cr=.05 cd=0.5 cons=4 talent=6,9,9;
-weapon+=bennett label="blackcliff longsword" atk=564.784 cd=0.368 refine=3;
-art+=bennett label="instructor" count=4;
-stats+=bennett label=main hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
-stats+=bennett label=subs atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+bennett char lvl=80/90 cons=4 talent=6,9,9;
+bennett add weapon="blackcliff longsword" refine=3 lvl=90/90;
+bennett add set="instructor" count=4;
+bennett add stats hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
+bennett add stats atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=kaeya ele=cryo lvl=80 hp=1 atk=208 def=1 er=0.267 cr=.05 cd=0.5 cons=0 talent=6,9,9;
-weapon+=kaeya label="lion's roar" atk=509.606 atk%=0.413 refine=3;
-art+=kaeya label="noblesse oblige" count=4;
-stats+=kaeya label=main hp=4780 atk=311 atk%=0.466 cryo%=0.466 cr=0.311;
-stats+=kaeya label=subs atk%=.0992 cr=.2648 cd=.7282 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+kaeya char lvl=80/90 cons=0 talent=6,9,9;
+kaeya add weapon="lion's roar" refine=3 lvl=90/90;
+kaeya add set="noblesse oblige" count=4;
+kaeya add stats hp=4780 atk=311 atk%=0.466 cryo%=0.466 cr=0.311;
+kaeya add stats atk%=.0992 cr=.2648 cd=.7282 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=rosaria ele=cryo lvl=90 hp=1 atk=240 def=1 atk%=0.24 cr=.05 cd=0.5 cons=4 talent=9,9,9;
-weapon+=rosaria label="dragon's bane" atk=454 em=221 refine=3;
-art+=rosaria label="lavawalker" count=4;
-stats+=rosaria label=main hp=4780 atk=311 atk%=0.466 cryo%=0.466 cr=0.311;
-stats+=rosaria label=subs atk%=.0992 cr=.2648 cd=.7944 em=118.92 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+rosaria char lvl=90/90 cons=4 talent=9,9,9;
+rosaria add weapon="dragon's bane" refine=3 lvl=90/90;
+rosaria add set="lavawalker" count=4;
+rosaria add stats hp=4780 atk=311 atk%=0.466 cryo%=0.466 cr=0.311;
+rosaria add stats atk%=.0992 cr=.2648 cd=.7944 em=118.92 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 '''
 
 config = '''##Default Enemy
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
 
 ##Actions List
-active+=bennett;
+active bennett;
 
 # HP particle simulation. Per srl:
 # it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
 # so in the case above, it adds on avg one particle every 250 frames in effect
 # so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
 # From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
-energy+=every interval=200,300 amount=1;
+energy every interval=200,300 amount=1;
 
-actions+=sequence_strict target=bennett exec=burst,skill if=.cd.xiangling.burst<60;
+bennett burst,skill  +if=.cd.xiangling.burst<60;
 
-actions+=sequence_strict target=xiangling exec=burst,skill;
+xiangling burst,skill; 
 
-actions+=sequence_strict target=kaeya exec=skill,burst;
+kaeya skill,burst; 
 
-actions+=sequence_strict target=rosaria exec=skill,burst;
+rosaria skill,burst; 
 
-actions+=skill target=rosaria;
-actions+=skill target=kaeya;
-actions+=sequence_strict target=bennett exec=attack,skill if=.energy.xiangling<70&&(.cd.rosaria.skill>60&&.cd.kaeya.skill>60) swap=xiangling;
+rosaria skill ;
+kaeya skill ;
+bennett attack,skill  +if=.energy.xiangling<70&&(.cd.rosaria.skill>60&&.cd.kaeya.skill>60) +swap_to=xiangling;
 
-actions+=attack target=bennett active=bennett;
-actions+=attack target=rosaria active=rosaria;
-actions+=attack target=kaeya active=kaeya;
-actions+=attack target=xiangling active=xiangling;
+bennett attack  +is_onfield;
+rosaria attack  +is_onfield;
+kaeya attack  +is_onfield;
+xiangling attack  +is_onfield;
 '''

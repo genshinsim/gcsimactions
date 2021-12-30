@@ -15,64 +15,64 @@ version = "0.1.0"
 kqm_standard_character_configs = '''
 
 ##Character Definitions
-char+=xiangling ele=pyro lvl=90 hp=10874.915 atk=225.141 def=668.871 em=96.000 cr=.05 cd=0.5 cons=4 talent=9,9,9;
-weapon+=xiangling label="the catch" atk=510 er=0.459 refine=5;
-art+=xiangling label="seal of insulation" count=4;
-stats+=xiangling label=main hp=4780 atk=311 atk%=.466 pyro%=0.466 cr=0.311;
-stats+=xiangling label=subs atk%=.0992 cr=.2317 cd=.662 em=99.1 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+xiangling char lvl=90/90 cons=4 talent=9,9,9;
+xiangling add weapon="the catch" refine=5 lvl=90/90;
+xiangling add set="seal of insulation" count=4;
+xiangling add stats hp=4780 atk=311 atk%=.466 pyro%=0.466 cr=0.311;
+xiangling add stats atk%=.0992 cr=.2317 cd=.662 em=99.1 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=xingqiu ele=hydro lvl=80 hp=1 atk=188 def=1 atk%=0.240 cr=.05 cd=0.5 cons=4 talent=6,9,9;
-weapon+=xingqiu label="favonius sword" atk=454.363 er=0.613 refine=3;
-art+=xingqiu label="seal of insulation" count=4;
-stats+=xingqiu label=main hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
-stats+=xingqiu label=subs atk%=.0992 cr=.2979 cd=.7282 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+xingqiu char lvl=80/90 cons=4 talent=6,9,9;
+xingqiu add weapon="favonius sword" refine=3 lvl=90/90;
+xingqiu add set="seal of insulation" count=4;
+xingqiu add stats hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
+xingqiu add stats atk%=.0992 cr=.2979 cd=.7282 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=bennett ele=pyro lvl=80 hp=1 atk=178 def=1 er=0.267 cr=.05 cd=0.5 cons=4 talent=6,9,9;
-weapon+=bennett label="blackcliff longsword" atk=564.784 cd=0.368 refine=3;
-art+=bennett label="noblesse oblige" count=4;
-stats+=bennett label=main hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
-stats+=bennett label=subs atk%=.0992 cr=.1986 cd=.5296 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+bennett char lvl=80/90 cons=4 talent=6,9,9;
+bennett add weapon="blackcliff longsword" refine=3 lvl=90/90;
+bennett add set="noblesse oblige" count=4;
+bennett add stats hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
+bennett add stats atk%=.0992 cr=.1986 cd=.5296 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=sucrose ele=anemo lvl=90 hp=9243.678 atk=169.918 def=702.997 anemo%=0.240 cr=.05 cd=0.5 cons=4 talent=6,6,6;
-weapon+=sucrose label="thrilling tales of dragon slayers" atk=401.294 hp%=0.352 refine=5;
-art+=sucrose label="viridescent venerer" count=4;
-stats+=sucrose label=main hp=4780 atk=311 em=561;
-stats+=sucrose label=subs atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+sucrose char lvl=90/90 cons=4 talent=6,6,6;
+sucrose add weapon="thrilling tales of dragon slayers" refine=5 lvl=90/90;
+sucrose add set="viridescent venerer" count=4;
+sucrose add stats hp=4780 atk=311 em=561;
+sucrose add stats atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 '''
 
 config = '''##Default Enemy
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-# target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-# target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
 
 ##Actions List
-active+=bennett;
+active bennett;
 
 # HP particle simulation. Per srl:
 # it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
 # so in the case above, it adds on avg one particle every 250 frames in effect
 # so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
 # From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
-energy+=every interval=200,300 amount=1;
+energy every interval=200,300 amount=1;
 
-actions+=sequence_strict target=bennett exec=skill,burst if=.status.xqburst<60&&.cd.xiangling.burst<120&&.cd.xiangling.skill<150&&.energy.xiangling>73&&.energy.xingqiu>73;
+bennett skill,burst  +if=.status.xqburst<60&&.cd.xiangling.burst<120&&.cd.xiangling.skill<150&&.energy.xiangling>73&&.energy.xingqiu>73;
 
 # Anemo tends to strip away auras in ST, so don't really want to use them
-actions+=sequence_strict target=sucrose exec=skill if=.element.pyro==1&&.debuff.res.vvpyro==0&&.status.xlburst==0&&.status.btburst>0;
-actions+=sequence_strict target=sucrose exec=skill if=.element.hydro==1&&.debuff.res.vvhydro==0&&.status.xianglingguoba==0&&.cd.bennett.burst>300;
+sucrose skill  +if=.element.pyro==1&&.debuff.res.vvpyro==0&&.status.xlburst==0&&.status.btburst>0;
+sucrose skill  +if=.element.hydro==1&&.debuff.res.vvhydro==0&&.status.xianglingguoba==0&&.cd.bennett.burst>300;
 
-actions+=sequence_strict target=xiangling exec=burst,skill if=.status.btburst>0;
-actions+=sequence_strict target=xiangling exec=burst if=.status.btburst>0;
+xiangling burst,skill  +if=.status.btburst>0;
+xiangling burst  +if=.status.btburst>0;
 
-actions+=sequence_strict target=xingqiu exec=burst,skill[orbital=1] lock=100;
+xingqiu burst,skill[orbital=1]  +swap_lock=100;
 
 # Funnelling - only used when XL burst is off as otherwise you steal vapes
-actions+=sequence_strict target=bennett exec=attack,skill if=.status.xqburst>0&&.status.xianglingburst<240&&.energy.xiangling<73 swap=xiangling;
-actions+=sequence_strict target=bennett exec=skill if=.status.xianglingburst<240&&.energy.xiangling<73 swap=xiangling;
+bennett attack,skill  +if=.status.xqburst>0&&.status.xianglingburst<240&&.energy.xiangling<73 +swap_to=xiangling;
+bennett skill  +if=.status.xianglingburst<240&&.energy.xiangling<73 +swap_to=xiangling;
 
-actions+=attack target=xingqiu if=.status.xqburst>0&&.status.btburst>0;
-actions+=attack target=xiangling active=xiangling;
-actions+=attack target=bennett active=bennett;
-actions+=attack target=xingqiu active=xingqiu;
+xingqiu attack  +if=.status.xqburst>0&&.status.btburst>0;
+xiangling attack  +is_onfield;
+bennett attack  +is_onfield;
+xingqiu attack  +is_onfield;
 '''

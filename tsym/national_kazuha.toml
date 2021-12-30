@@ -15,61 +15,61 @@ version = "0.1.0"
 kqm_standard_character_configs = '''
 
 ##Character Definitions
-char+=xiangling ele=pyro lvl=90 hp=10874.915 atk=225.141 def=668.871 em=96.000 cr=.05 cd=0.5 cons=4 talent=9,9,9;
-weapon+=xiangling label="the catch" atk=510 er=0.459 refine=5;
-art+=xiangling label="seal of insulation" count=4;
-stats+=xiangling label=main hp=4780 atk=311 atk%=.466 pyro%=0.466 cr=0.311;
-stats+=xiangling label=subs atk%=.0992 cr=.2317 cd=.662 em=99.1 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+xiangling char lvl=90/90 cons=4 talent=9,9,9;
+xiangling add weapon="the catch" refine=5 lvl=90/90;
+xiangling add set="seal of insulation" count=4;
+xiangling add stats hp=4780 atk=311 atk%=.466 pyro%=0.466 cr=0.311;
+xiangling add stats atk%=.0992 cr=.2317 cd=.662 em=99.1 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=xingqiu ele=hydro lvl=80 hp=1 atk=188 def=1 atk%=0.240 cr=.05 cd=0.5 cons=4 talent=6,9,9;
-weapon+=xingqiu label="favonius sword" atk=454.363 er=0.613 refine=3;
-art+=xingqiu label="seal of insulation" count=4;
-stats+=xingqiu label=main hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
-stats+=xingqiu label=subs atk%=.0992 cr=.331 cd=.7944 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+xingqiu char lvl=80/90 cons=4 talent=6,9,9;
+xingqiu add weapon="favonius sword" refine=3 lvl=90/90;
+xingqiu add set="seal of insulation" count=4;
+xingqiu add stats hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
+xingqiu add stats atk%=.0992 cr=.331 cd=.7944 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=bennett ele=pyro lvl=80 hp=1 atk=178 def=1 er=0.267 cr=.05 cd=0.5 cons=4 talent=6,9,9;
-weapon+=bennett label="blackcliff longsword" atk=564.784 cd=0.368 refine=3;
-art+=bennett label="noblesse oblige" count=4;
-stats+=bennett label=main hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
-stats+=bennett label=subs atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+bennett char lvl=80/90 cons=4 talent=6,9,9;
+bennett add weapon="blackcliff longsword" refine=3 lvl=90/90;
+bennett add set="noblesse oblige" count=4;
+bennett add stats hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
+bennett add stats atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=kaedeharakazuha ele=anemo lvl=90 hp=13348.043 atk=296.581 def=806.982 em=115.200 cr=.05 cd=0.5 cons=0 talent=6,6,6;
-weapon+=kaedeharakazuha label="iron sting" atk=509.606 em=165.384 refine=3;
-art+=kaedeharakazuha label="viridescent venerer" count=4;
-stats+=kaedeharakazuha label=main hp=4780 atk=311 er=.518 em=374;
-stats+=kaedeharakazuha label=subs atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+kaedeharakazuha char lvl=90/90 cons=0 talent=6,6,6;
+kaedeharakazuha add weapon="iron sting" refine=3 lvl=90/90;
+kaedeharakazuha add set="viridescent venerer" count=4;
+kaedeharakazuha add stats hp=4780 atk=311 er=.518 em=374;
+kaedeharakazuha add stats atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 '''
 
 config = '''##Default Enemy
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-# target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
 
 ##Actions List
-active+=bennett;
+active bennett;
 
 # HP particle simulation. Per srl:
 # it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
 # so in the case above, it adds on avg one particle every 250 frames in effect
 # so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
 # From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
-energy+=every interval=200,300 amount=1;
+energy every interval=200,300 amount=1;
 
-actions+=sequence_strict target=xingqiu exec=skill,burst[orbital=1],attack;
-actions+=sequence_strict target=kaedeharakazuha exec=burst if=.cd.xingqiu.skill>900&&.energy.xiangling>70;
+xingqiu skill,burst[orbital=1],attack; 
+kaedeharakazuha burst  +if=.cd.xingqiu.skill>900&&.energy.xiangling>70;
 
-actions+=sequence_strict target=bennett exec=skill,burst if=.cd.xiangling.burst<120&&.cd.xiangling.skill<150&&.energy.xiangling>73;
+bennett skill,burst  +if=.cd.xiangling.burst<120&&.cd.xiangling.skill<150&&.energy.xiangling>73;
 
-actions+=sequence_strict target=kaedeharakazuha exec=skill[hold=1],high_plunge if=.status.btburst>0&&.debuff.res.vvpyro==0;
+kaedeharakazuha skill[hold=1],high_plunge  +if=.status.btburst>0&&.debuff.res.vvpyro==0;
 
-actions+=sequence_strict target=xiangling exec=burst,attack,skill if=.status.btburst>0;
+xiangling burst,attack,skill  +if=.status.btburst>0;
 
 # Funnelling - only used when XL burst is off as otherwise you steal vapes
-actions+=sequence_strict target=bennett exec=attack,skill if=.status.xqburst>0&&.status.xianglingburst<360&&.energy.xiangling<73 swap=xiangling;
-actions+=sequence_strict target=bennett exec=skill if=.status.xianglingburst<240&&.energy.xiangling<73 swap=xiangling;
+bennett attack,skill  +if=.status.xqburst>0&&.status.xianglingburst<360&&.energy.xiangling<73 +swap_to=xiangling;
+bennett skill  +if=.status.xianglingburst<240&&.energy.xiangling<73 +swap_to=xiangling;
 
-actions+=attack target=xingqiu if=.status.xqburst>0&&.status.btburst>0;
-actions+=attack target=xiangling active=xiangling;
-actions+=attack target=bennett active=bennett;
-actions+=attack target=xingqiu active=xingqiu;
+xingqiu attack  +if=.status.xqburst>0&&.status.btburst>0;
+xiangling attack  +is_onfield;
+bennett attack  +is_onfield;
+xingqiu attack  +is_onfield;
 '''

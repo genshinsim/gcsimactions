@@ -15,64 +15,64 @@ version = "0.1.0"
 kqm_standard_character_configs = '''
 
 ##Character Definitions
-char+=zhongli ele=geo lvl=80 hp=1 atk=233 def=1 geo%=.288 cr=.05 cd=0.5 cons=0 talent=6,9,9;
-weapon+=zhongli label="favonius lance" atk=564.784 er=0.306 refine=3;
-art+=zhongli label="noblesse oblige" count=4;
-stats+=zhongli label=main hp=4780 atk=311 hp%=1 cr=0.311;
-stats+=zhongli label=subs atk%=.0992 cr=.2648 cd=.1324 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+zhongli char lvl=80/90 cons=0 talent=6,9,9;
+zhongli add weapon="favonius lance" refine=3 lvl=90/90;
+zhongli add set="noblesse oblige" count=4;
+zhongli add stats hp=4780 atk=311 hp%=1 cr=0.311;
+zhongli add stats atk%=.0992 cr=.2648 cd=.1324 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=albedo ele=geo lvl=80 hp=1 atk=233 def=815 geo%=.288 cr=.05 cd=0.5 cons=0 talent=6,9,9;
-weapon+=albedo label="harbinger of dawn" atk=401 cd=.469 refine=5;
-# weapon+=albedo label="cinnabar spindle" atk=454 def%=.69 refine=5;
-art+=albedo label="noblesse oblige" count=4;
-# art+=albedo label="husk of opulent dreams" count=4;
-stats+=albedo label=main hp=4780 atk=311 def%=.518 geo%=0.466 cr=0.311;
-stats+=albedo label=subs atk%=.0992 cr=.331 cd=.7944 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.248 def=39.36;
+albedo char lvl=80/90 cons=0 talent=6,9,9;
+albedo add weapon="harbinger of dawn" refine=5 lvl=90/90;
+# albedo add weapon="cinnabar spindle" refine=5 lvl=90/90;
+albedo add set="noblesse oblige" count=4;
+# albedo add set="husk of opulent dreams" count=4;
+albedo add stats hp=4780 atk=311 def%=.518 geo%=0.466 cr=0.311;
+albedo add stats atk%=.0992 cr=.331 cd=.7944 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.248 def=39.36;
 
-char+=xiao ele=anemo lvl=90 hp=12736 atk=349 def=799 cr=.242 cd=0.5 cons=0 talent=9,9,9;
-weapon+=xiao label="deathmatch" atk=454 cr=.368 refine=3;
-art+=xiao label="viridescent venerer" count=2;
-art+=xiao label="gladiator's finale" count=2;
-stats+=xiao label=main hp=4780 atk=311 atk%=0.466 anemo%=0.466 cd=0.622;
-stats+=xiao label=subs atk%=0.0992 cr=.3972 cd=.662 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+xiao char lvl=90/90 cons=0 talent=9,9,9;
+xiao add weapon="deathmatch" refine=3 lvl=90/90;
+xiao add set="viridescent venerer" count=2;
+xiao add set="gladiator's finale" count=2;
+xiao add stats hp=4780 atk=311 atk%=0.466 anemo%=0.466 cd=0.622;
+xiao add stats atk%=0.0992 cr=.3972 cd=.662 em=39.64 er=.2204 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
-char+=sucrose ele=anemo lvl=90 hp=9243.678 atk=169.918 def=702.997 anemo%=0.240 cr=.05 cd=0.5 cons=4 talent=8,8,10;
-weapon+=sucrose label="thrilling tales of dragon slayers" atk=401.294 hp%=0.352 refine=5;
-art+=sucrose label="viridescent venerer" count=4;
-stats+=sucrose label=main hp=4780 atk=311 em=561;
-stats+=sucrose label=subs atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
+sucrose char lvl=90/90 cons=4 talent=8,8,10;
+sucrose add weapon="thrilling tales of dragon slayers" refine=5 lvl=90/90;
+sucrose add set="viridescent venerer" count=4;
+sucrose add stats hp=4780 atk=311 em=561;
+sucrose add stats atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 '''
 
 config = '''##Default Enemy
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
-target+="dummy" lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
 
 ##Actions List
-active+=zhongli;
+active zhongli;
 
 # HP particle simulation. Per srl:
 # it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
 # so in the case above, it adds on avg one particle every 250 frames in effect
 # so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
 # From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
-energy+=every interval=200,300 amount=1;
+energy every interval=200,300 amount=1;
 
-actions+=sequence_strict target=xiao exec=high_plunge[plunge_hits=1] if=.status.xiaoburst>60;
+xiao high_plunge[plunge_hits=1]  +if=.status.xiaoburst>60;
 
-actions+=skill[hold_nostele=1] target=zhongli once=true;
-actions+=skill[hold_nostele=1] target=zhongli if=.cd.xiao.burst<500;
-actions+=sequence_strict target=albedo exec=skill,burst if=.cd.xiao.burst<300;
-actions+=sequence_strict target=albedo exec=skill,attack if=.cd.xiao.burst<300;
+zhongli skill[hold_nostele=1] +limit=1;
+zhongli skill[hold_nostele=1] +if=.cd.xiao.burst<500;
+albedo skill,burst  +if=.cd.xiao.burst<300;
+albedo skill,attack  +if=.cd.xiao.burst<300;
 
-actions+=sequence_strict exec=skill,skill target=sucrose swap=xiao if=.cd.xiao.burst==0&&.energy.xiao<60&&.tags.sucrose.eCharge>1;
-actions+=sequence_strict exec=skill target=sucrose swap=xiao if=.cd.xiao.burst==0;
+sucrose skill,skill +swap_to=xiao +if=.cd.xiao.burst==0&&.energy.xiao<60&&.tags.sucrose.eCharge>1;
+sucrose skill +swap_to=xiao +if=.cd.xiao.burst==0;
 
-actions+=sequence_strict target=xiao exec=skill,skill,burst;
+xiao skill,skill,burst; 
 
 # Funneling
-actions+=sequence_strict exec=skill target=sucrose swap=xiao if=.cd.xiao.burst==0;
+sucrose skill +swap_to=xiao +if=.cd.xiao.burst==0;
 
-actions+=attack target=xiao lock=100;
-actions+=attack target=zhongli active=zhongli;
+xiao attack  +swap_lock=100;
+zhongli attack  +is_onfield;
 '''
