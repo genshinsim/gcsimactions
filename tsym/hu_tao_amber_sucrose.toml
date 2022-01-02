@@ -1,40 +1,34 @@
 title = "Hu Tao Amber VV"
 author = "Tsym#2586"
 recommended_rotation_length = "21.0"
-recommended_minimum_er = { amber = 2.2432, sucrose = 1.1102, xingqiu = 2.2538, hutao = 1.1102 }
-recommended_loadouts = { amber = 'favonius warbow, 4 instructor', sucrose = 'thrilling tales of dragon slayers, 4 viridescent venerer', xingqiu = 'favonius sword, 4 seal of insulation', hutao = 'deathmatch, 4 crimson witch of flames' }
-recommended_enemy_count = 1
+recommended_enemy_count = 0
 description = '''Recommended Rotation Duration: 21.0
-Recommended Minimum ER by Character: amber: 224%; sucrose: 111%; xingqiu: 225%; hutao: 111%
-Rotation Built for the Following Weapon/Artifacts: amber: favonius warbow, 4 instructor; sucrose: thrilling tales of dragon slayers, 4 viridescent venerer; xingqiu: favonius sword, 4 seal of insulation; hutao: deathmatch, 4 crimson witch of flames
-Recommended Enemy Count: 1
-Rotation: Xingqiu E Q -> Amber Q (Stay onfield for .5s to proc Instructor) -> Sucrose E N1 (Pyro VV) -> Hu Tao E 8N2C + Q (Omitted in rotation 2 as Hu Tao does not generate enough energy) -> Xingqiu. Everything from Hu Tao is getting vaped except for some Normals here and there.'''
-characters = ['amber', 'sucrose', 'xingqiu', 'hutao']
-version = "0.1.0"
+Expected Rotation: Xingqiu E Q -> Amber Q (Stay onfield for .5s to proc Instructor) -> Sucrose E N1 (Pyro VV) -> Hu Tao E 8N2C + Q (Omitted in rotation 2 as Hu Tao does not generate enough energy) -> Xingqiu. Everything from Hu Tao is getting vaped except for some Normals here and there.'''
+characters = ['sucrose', 'hutao', 'amber', 'xingqiu']
 
 kqm_standard_character_configs = '''
 
 ##Character Definitions
-hutao char lvl=90/90 cons=0 talent=9,9,9;
-hutao add weapon="deathmatch" refine=3 lvl=90/90;
+hutao char lvl=90/90 cons=0 talent=9,9,9 start_hp=3000;
+hutao add weapon="deathmatch" lvl=90/90 refine=3;
 hutao add set="crimson witch of flames" count=4;
 hutao add stats hp=4780 atk=311 em=187 pyro%=0.466 cd=0.622;
 hutao add stats atk%=.0992 cr=.3972 cd=.662 em=79.28 er=.1102 hp%=.1984 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 xingqiu char lvl=80/90 cons=4 talent=6,9,9;
-xingqiu add weapon="favonius sword" refine=3 lvl=90/90;
+xingqiu add weapon="favonius sword" lvl=90/90 refine=3;
 xingqiu add set="seal of insulation" count=4;
 xingqiu add stats hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
 xingqiu add stats atk%=.0992 cr=.2648 cd=.662 em=39.64 er=.4408 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 amber char lvl=80/90 cons=0 talent=6,9,9;
-amber add weapon="favonius warbow" refine=3 lvl=90/90;
+amber add weapon="favonius warbow" lvl=90/90 refine=3;
 amber add set="instructor" count=4;
 amber add stats hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
 amber add stats atk%=.0992 cr=.2 cd=.1324 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 sucrose char lvl=90/90 cons=4 talent=6,6,6;
-sucrose add weapon="thrilling tales of dragon slayers" refine=5 lvl=90/90;
+sucrose add weapon="thrilling tales of dragon slayers" lvl=90/90 refine=5;
 sucrose add set="viridescent venerer" count=4;
 sucrose add stats hp=4780 atk=311 em=561;
 sucrose add stats atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
@@ -42,34 +36,48 @@ sucrose add stats atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.1102 hp%=.0992 hp=5
 '''
 
 config = '''##Default Enemy
-target lvl=100 resist=.1;
-# target lvl=100 resist=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+## HP Particles
+energy every interval=480,720 amount=1;
 
 ##Actions List
 active xingqiu;
 
-# HP particle simulation. Per srl:
-# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
-# so in the case above, it adds on avg one particle every 250 frames in effect
-# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
-# From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
-energy every interval=200,300 amount=1;
-
 # Drops 1 N2C - check ability usage figures to confirm
-# hutao jump  +if=.status.paramita>300&&.status.paramita<350;
+# hutao jump +if=.status.paramita>300&&.status.paramita<350;
 
-hutao burst  +if=.status.paramita<20&&.status.paramita>0;
-hutao attack,attack,charge  +if=.status.paramita>20&&.status.paramita<=60;
-hutao attack,attack,charge,dash  +if=.status.paramita>60&&.stam.hutao>180;
-hutao attack,attack,charge,jump  +if=.status.paramita>60;
+# For PP Slide
+hutao burst
+      +if=.status.paramita<20
+      &&.status.paramita>0;
+hutao attack,charge
+      +if=.status.paramita>20
+      && .status.paramita<=60;
 
-xingqiu skill[orbital=1],burst[orbital=1],attack; 
-# Need a jump as a waiting mechanism before it's time to get 4 instructor
-amber burst,jump  +if=.status.xqburst>0&&.status.xqburst>720 +swap_to=sucrose;
-sucrose skill,attack  +swap_to=hutao +if=.cd.hutao.skill<120&&.status.xqburst>720;
+# Normal N2CJ/N2CD attack sequence
+hutao attack:2,charge,dash
+      +if=.status.paramita>60
+      && .stam.hutao>180;
+hutao attack:2,charge,jump
+      +if=.status.paramita>60;
 
-hutao skill  +if=.status.xqburst>720;
+xingqiu skill[orbital=1],burst[orbital=1],attack;
 
-xingqiu attack ;
-hutao attack  +is_onfield;
+amber burst
+      +swap_to=sucrose
+      +if=.status.xqburst>300;
+
+# N2 to hydro swirl for double VV
+sucrose attack,attack,skill,attack
+        +swap_to=hutao
+        +if=.cd.hutao.skill<120
+        && .status.xqburst>300;
+
+hutao skill
+      +if=.status.xqburst>300;
+
+xingqiu attack;
+hutao attack;
 '''

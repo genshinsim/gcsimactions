@@ -1,40 +1,34 @@
 title = "Tartaglia Reverse Vape Sucrose (Pyro VV)"
 author = "Tsym#2586"
 recommended_rotation_length = "24.0"
-recommended_minimum_er = { xiangling = 1.9896, sucrose = 1.1102, tartaglia = 1.3306, bennett = 2.1707 }
-recommended_loadouts = { xiangling = 'the catch, 4 seal of insulation', sucrose = 'thrilling tales of dragon slayers, 4 viridescent venerer', tartaglia = 'the viridescent hunt, 4 heart of depth', bennett = 'blackclifflongsword, 4 noblesse oblige' }
-recommended_enemy_count = 2
+recommended_enemy_count = 0
 description = '''Recommended Rotation Duration: 24.0
-Recommended Minimum ER by Character: xiangling: 199%; sucrose: 111%; tartaglia: 133%; bennett: 217%
-Rotation Built for the Following Weapon/Artifacts: xiangling: the catch, 4 seal of insulation; sucrose: thrilling tales of dragon slayers, 4 viridescent venerer; tartaglia: the viridescent hunt, 4 heart of depth; bennett: blackclifflongsword, 4 noblesse oblige
-Recommended Enemy Count: 2
-Rotation: Bennett Q E -> Sucrose E E (Rotation 1, only 1 E for Rotation 2) -> Xiangling Q E -> Tartaglia rQ + E + (N3C) x 4 -> Bennett E -> Xiangling -> Tartaglia CA -> Bennett E -> Xiangling -> Tartaglia (CA) x2'''
-characters = ['xiangling', 'sucrose', 'tartaglia', 'bennett']
-version = "0.1.0"
+Expected Rotation: Bennett Q E -> Sucrose E E (Rotation 1, only 1 E for Rotation 2) -> Xiangling Q E -> Tartaglia rQ + E + (N3C) x 4 -> Bennett E -> Xiangling -> Tartaglia CA -> Bennett E -> Xiangling -> Tartaglia (CA) x2'''
+characters = ['sucrose', 'xiangling', 'bennett', 'tartaglia']
 
 kqm_standard_character_configs = '''
 
 ##Character Definitions
 xiangling char lvl=90/90 cons=4 talent=9,9,9;
-xiangling add weapon="the catch" refine=5 lvl=90/90;
+xiangling add weapon="the catch" lvl=90/90 refine=5;
 xiangling add set="seal of insulation" count=4;
 xiangling add stats hp=4780 atk=311 atk%=0.466 pyro%=0.466 cr=0.311;
 xiangling add stats atk%=.0992 cr=.2317 cd=.8606 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 bennett char lvl=80/90 cons=4 talent=6,9,9;
-bennett add weapon="blackclifflongsword" refine=3 lvl=90/90;
+bennett add weapon="blackcliff longsword" lvl=90/90 refine=3;
 bennett add set="noblesse oblige" count=4;
 bennett add stats hp=4780 atk=311 er=.518 pyro%=0.466 cr=0.311;
 bennett add stats atk%=.0992 cr=.0662 cd=.1324 em=39.64 er=.3857 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 sucrose char lvl=90/90 cons=4 talent=6,6,6;
-sucrose add weapon="thrilling tales of dragon slayers" refine=5 lvl=90/90;
+sucrose add weapon="thrilling tales of dragon slayers" lvl=90/90 refine=5;
 sucrose add set="viridescent venerer" count=4;
 sucrose add stats hp=4780 atk=311 em=561;
 sucrose add stats atk%=.0992 cr=.0662 cd=.1324 em=138.74 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 tartaglia char lvl=80/90 cons=0 talent=6,9,9;
-tartaglia add weapon="the viridescent hunt" refine=3 lvl=90/90;
+tartaglia add weapon="the viridescent hunt" lvl=90/90 refine=3;
 tartaglia add set="heart of depth" count=4;
 tartaglia add stats hp=4780 atk=311 atk%=0.466 hydro%=0.466 cd=0.622;
 tartaglia add stats atk%=.0992 cr=.3641 cd=.4634 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
@@ -42,38 +36,46 @@ tartaglia add stats atk%=.0992 cr=.3641 cd=.4634 em=39.64 er=.3306 hp%=.0992 hp=
 '''
 
 config = '''##Default Enemy
-target lvl=100 resist=.1;
-target lvl=100 resist=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+##HP Particles
+energy every interval=480,720 amount=1;
 
 ##Actions List
 active tartaglia;
 
-# HP particle simulation. Per srl:
-# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
-# so in the case above, it adds on avg one particle every 250 frames in effect
-# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
-# From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
-energy every interval=200,300 amount=1;
+tartaglia attack:3,charge,
+          attack:3,charge,
+          attack:3,charge,
+          attack:3,charge
+          +if=.status.tartagliamelee>0
+          && .status.btburst>0
+          && .status.xianglingburst>0;
 
-tartaglia attack,attack,attack,charge,attack,attack,attack,charge,attack,attack,attack,charge,attack,attack,attack,charge  +if=.status.tartagliamelee>0&&.status.btburst>0&&.status.xianglingburst>0;
+bennett burst,skill
+        +if=.energy.xiangling>69;
 
-bennett burst,skill  +if=.energy.xiangling>69;
-sucrose skill  +if=.debuff.res.t1.vvpyro==0&&.element.t1.pyro==1&&.status.btburst>0;
-sucrose skill  +if=.status.btburst>0;
-sucrose attack  +if=.debuff.res.t1.vvpyro==0&&.element.t1.pyro==1&&.status.btburst>0;
-xiangling burst,skill  +if=.status.btburst>0&&.debuff.res.t1.vvpyro==1 +swap_to=tartaglia;
+sucrose skill
+        +if=.debuff.res.t1.vvpyro==0
+        && .element.t1.pyro==1
+        && .status.btburst>0;
+sucrose attack
+        +if=.debuff.res.t1.vvpyro==0
+        && .element.t1.pyro==1
+        && .status.btburst>0;
 
-tartaglia burst; 
-tartaglia skill  +if=.status.btburst>0&&.status.xianglingburst>0;
+xiangling burst,skill
+          +if=.status.btburst>0
+          +swap_to=tartaglia;
 
-sucrose skill  +if=.debuff.res.t1.vvhydro==0&&.element.t1.hydro==1&&.status.xianglingburst==0;
+tartaglia burst;
+tartaglia skill
+          +if=.status.btburst>0
+          && .status.xianglingburst>0;
 
 # Funnelling
-bennett skill  +if=.energy.xiangling<70 +swap_to=xiangling;
-
-tartaglia aim,aim +swap_to=bennett +if=.element.t1.pyro==0;
-tartaglia aim  +swap_to=bennett;
-sucrose attack ;
-xiangling attack  +is_onfield;
-bennett attack  +is_onfield;
+bennett skill
+        +if=.energy.xiangling<70
+        +swap_to=xiangling;
 '''

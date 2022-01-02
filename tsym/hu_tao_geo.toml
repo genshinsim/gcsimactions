@@ -1,43 +1,37 @@
 title = "Hu Tao Geo Bros"
 author = "Tsym#2586"
 recommended_rotation_length = "21.0"
-recommended_minimum_er = { xingqiu = 2.2538, albedo = 1.3306, zhongli = 1.4162000000000001, hutao = 1.1102 }
-recommended_loadouts = { xingqiu = 'favonius sword, 4 seal of insulation', albedo = 'harbinger of dawn, 4 noblesse oblige', zhongli = 'favonius lance, 4 instructor', hutao = 'deathmatch, 4 crimson witch of flames' }
-recommended_enemy_count = 1
+recommended_enemy_count = 0
 description = '''Recommended Rotation Duration: 21.0
-Recommended Minimum ER by Character: xingqiu: 225%; albedo: 133%; zhongli: 142%; hutao: 111%
-Rotation Built for the Following Weapon/Artifacts: xingqiu: favonius sword, 4 seal of insulation; albedo: harbinger of dawn, 4 noblesse oblige; zhongli: favonius lance, 4 instructor; hutao: deathmatch, 4 crimson witch of flames
-Recommended Enemy Count: 1
-Rotation: Xingqiu E Q -> Zhongli N2 E Hold (put pillar away from enemy) -> Albedo E Q (Omitted in rotation 2 - not enough energy) -> Hu Tao E 8N2C + Q (Omitted in rotation 2 as Hu Tao does not generate enough energy) -> Xingqiu.  Hu Tao loses 1 CA vape across 2 rotations.'''
-characters = ['xingqiu', 'albedo', 'zhongli', 'hutao']
-version = "0.1.0"
+Expected Rotation: Xingqiu E Q -> Zhongli N2 E Hold (put pillar away from enemy) -> Albedo E Q (Omitted in rotation 2 - not enough energy) -> Hu Tao E 8N2C + Q (Omitted in rotation 2 as Hu Tao does not generate enough energy) -> Xingqiu.  Hu Tao loses 1 CA vape across 2 rotations.'''
+characters = ['albedo', 'hutao', 'zhongli', 'xingqiu']
 
 kqm_standard_character_configs = '''
 
 ##Character Definitions
-hutao char lvl=90/90 cons=0 talent=9,9,9;
-hutao add weapon="deathmatch" refine=3 lvl=90/90;
+hutao char lvl=90/90 cons=0 talent=9,9,9 start_hp=3000;
+hutao add weapon="deathmatch" lvl=90/90 refine=3;
 hutao add set="crimson witch of flames" count=4;
 hutao add stats hp=4780 atk=311 em=187 pyro%=0.466 cd=0.622;
 hutao add stats atk%=.0992 cr=.3972 cd=.662 em=79.28 er=.1102 hp%=.1984 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 xingqiu char lvl=80/90 cons=4 talent=6,9,9;
-xingqiu add weapon="favonius sword" refine=3 lvl=90/90;
+xingqiu add weapon="favonius sword" lvl=90/90 refine=3;
 xingqiu add set="seal of insulation" count=4;
 xingqiu add stats hp=4780 atk=311 atk%=0.466 hydro%=0.466 cr=0.311;
 xingqiu add stats atk%=.0992 cr=.2648 cd=.662 em=39.64 er=.4408 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 zhongli char lvl=80/90 cons=0 talent=6,9,9;
-zhongli add weapon="favonius lance" refine=3 lvl=90/90;
+zhongli add weapon="favonius lance" lvl=90/90 refine=3;
 zhongli add set="instructor" count=4;
 zhongli add stats hp=4780 atk=311 hp%=1 cr=0.311;
 zhongli add stats atk%=.0992 cr=.2648 cd=.1324 em=39.64 er=.1102 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 
 albedo char lvl=80/90 cons=0 talent=6,9,9;
-albedo add weapon="harbinger of dawn" refine=5 lvl=90/90;
+albedo add weapon="harbinger of dawn" lvl=90/90 refine=5;
 albedo add set="noblesse oblige" count=4;
 # albedo add set="husk of opulent dreams" count=4;
-albedo add stats hp=4780 atk=311 def%=.518 geo%=0.466 cr=0.311;
+albedo add stats hp=4780 atk=311 def%=.583 geo%=0.466 cr=0.311;
 # albedo add stats hp=4780 atk=311 er=.518 geo%=0.466 cr=0.311;
 albedo add stats atk%=.0992 cr=.1655 cd=.662 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
 # albedo add stats atk%=.0992 cr=.1655 cd=.662 em=39.64 er=.3306 hp%=.0992 hp=507.88 atk=33.08 def%=.124 def=39.36;
@@ -45,34 +39,47 @@ albedo add stats atk%=.0992 cr=.1655 cd=.662 em=39.64 er=.3306 hp%=.0992 hp=507.
 '''
 
 config = '''##Default Enemy
-target lvl=100 resist=.1;
-# target lvl=100 resist=.1;
+target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+# target lvl=100 pyro=0.1 dendro=0.1 hydro=0.1 electro=0.1 geo=0.1 anemo=0.1 physical=.1 cryo=.1;
+
+## HP Particles
+# Equivalent to 3 HP Orbs over 90s, per KQM standards
+energy every interval=480,720 amount=1;
 
 ##Actions List
 active xingqiu;
 
-# HP particle simulation. Per srl:
-# it adds 1 particle randomly, uniformly distributed between 200 to 300 frames after the last time an energy drops
-# so in the case above, it adds on avg one particle every 250 frames in effect
-# so over 90s of combat that's 90 * 60 / 250 = 21.6 on avg
-# From elijam assumptions: https://discord.com/channels/763583452762734592/851428030094114847/884832120650993805
-energy every interval=200,300 amount=1;
-
 # Drops 1 N2C - check ability usage figures to confirm
-# hutao jump  +if=.status.paramita>300&&.status.paramita<350;
+# hutao jump +if=.status.paramita>300&&.status.paramita<350;
 
-hutao burst  +if=.status.paramita<20&&.status.paramita>0;
-hutao attack,attack,charge  +if=.status.paramita>20&&.status.paramita<=60;
-hutao attack,attack,charge,dash  +if=.status.paramita>60&&.stam.hutao>180;
-hutao attack,attack,charge,jump  +if=.status.paramita>60;
+hutao burst
+      +if=.status.paramita<20
+      && .status.paramita>0;
+hutao attack,charge
+      +if=.status.paramita>20
+      && .status.paramita<=60;
+hutao attack:2,charge,dash
+      +if=.status.paramita>60
+      && .stam.hutao>180;
+hutao attack:2,charge,jump
+      +if=.status.paramita>60;
 
-xingqiu skill[orbital=1],burst[orbital=1],attack; 
-zhongli attack,attack,skill[hold_nostele=1]  +if=.status.xqburst>0&&.status.xqburst>720 +swap_to=albedo;
-albedo skill,burst  +swap_to=hutao +if=.cd.hutao.skill<120&&.status.xqburst>720;
-albedo skill,attack  +swap_to=hutao +if=.cd.hutao.skill<120&&.status.xqburst>720;
+xingqiu skill[orbital=1],burst[orbital=1],attack;
 
-hutao skill  +if=.status.xqburst>720;
+zhongli attack,attack,skill[hold_nosteele=1]
+        +swap_to=albedo
+        +if=.status.xqburst>300;
 
-xingqiu attack ;
-hutao attack  +is_onfield;
+albedo skill,burst,attack
+       +swap_to=hutao
+       +if=.cd.hutao.skill<120
+       && .status.xqburst>300;
+albedo skill,attack
+       +swap_to=hutao
+       +if=.cd.hutao.skill<120
+       && .status.xqburst>300;
+
+hutao skill +if=.status.xqburst>300;
+
+xingqiu attack;
 '''
