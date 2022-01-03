@@ -5,7 +5,7 @@ recommended_enemy_count = 0
 description = '''Recommended Rotation Duration: 21.0
 Expected Rotation: Xingqiu E Q -> Amber Q (Stay onfield for .5s to proc Instructor) -> Sucrose E N1 (Pyro VV) -> Hu Tao E 8N2C + Q (Omitted in rotation 2 as Hu Tao does not generate enough energy) -> Xingqiu. Everything from Hu Tao is getting vaped except for some Normals here and there.'''
 characters = ['sucrose', 'hutao', 'amber', 'xingqiu']
-version = 0.1
+version = "0.1"
 kqm_standard_character_configs = '''
 
 ##Character Definitions

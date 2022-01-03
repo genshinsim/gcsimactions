@@ -5,7 +5,7 @@ recommended_enemy_count = 0
 description = '''Recommended Rotation Duration: 21.0
 Expected Rotation: Xingqiu E Q -> Zhongli N2 E Hold (put pillar away from enemy) -> Albedo E Q (Omitted in rotation 2 - not enough energy) -> Hu Tao E 8N2C + Q (Omitted in rotation 2 as Hu Tao does not generate enough energy) -> Xingqiu.  Hu Tao loses 1 CA vape across 2 rotations.'''
 characters = ['albedo', 'hutao', 'zhongli', 'xingqiu']
-version = 0.1
+version = "0.1"
 kqm_standard_character_configs = '''
 
 ##Character Definitions
